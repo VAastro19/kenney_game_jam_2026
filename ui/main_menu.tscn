@@ -117,8 +117,9 @@ offset_bottom = 79.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CheckBox" type="CheckBox" parent="SettingsPanel/VBoxContainer" unique_id=1766261286]
+[node name="FullscreenButton" type="CheckBox" parent="SettingsPanel/VBoxContainer" unique_id=1766261286]
 layout_mode = 2
+button_pressed = true
 text = "Fullscreen"
 alignment = 1
 
@@ -130,5 +131,5 @@ text = "Back"
 [connection signal="pressed" from="ButtonPanel/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ButtonPanel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ButtonPanel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="toggled" from="SettingsPanel/VBoxContainer/CheckBox" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="SettingsPanel/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_toggled"]
 [connection signal="pressed" from="SettingsPanel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

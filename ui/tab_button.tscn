@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b25dp2omijelv"]
+
+[ext_resource type="Script" uid="uid://br7oweby71hes" path="res://ui/scripts/tab_button.gd" id="1_1w6bu"]
+
+[node name="TabButton" type="Button" unique_id=1094330538]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Button"
+script = ExtResource("1_1w6bu")

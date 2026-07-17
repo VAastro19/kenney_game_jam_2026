@@ -19,11 +19,17 @@ config/icon="uid://cveik27wkkgla"
 [autoload]
 
 SceneLoader="*uid://dafi2mqd1wi21"
+GameManager="*uid://dowtit1cdvnmn"
+EventBus="*uid://ussy10rcbuyp"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom_font="uid://1vjjsxl0rmgo"
 
 [physics]
 

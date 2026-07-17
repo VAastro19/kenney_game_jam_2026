@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c7dbpiwcukn06"]
+
+[ext_resource type="Script" uid="uid://c8d23bavbi37w" path="res://ui/scripts/coin_counter.gd" id="1_1c3cc"]
+[ext_resource type="Texture2D" uid="uid://c2pgc2wuco2a1" path="res://assets/graphics/coins/blue_coin.png" id="2_8agjf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_082uc"]
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CoinCounter" type="Control" unique_id=1105764973]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 3
+anchor_right = 0.2
+anchor_bottom = 0.08
+script = ExtResource("1_1c3cc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1969921939]
+layout_mode = 0
+offset_right = 135.0
+offset_bottom = 46.0
+theme_override_constants/separation = 20
+
+[node name="CoinIcon" type="TextureRect" parent="HBoxContainer" unique_id=520827646]
+layout_mode = 2
+texture = ExtResource("2_8agjf")
+
+[node name="CoinCounterLabel" type="Label" parent="HBoxContainer" unique_id=81384241]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_082uc")
+horizontal_alignment = 1
+vertical_alignment = 1

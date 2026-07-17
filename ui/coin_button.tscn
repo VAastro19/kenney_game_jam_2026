@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bqndwuq87n1cw"]
+
+[ext_resource type="Script" uid="uid://id7u14i2etdy" path="res://ui/scripts/coin_button.gd" id="1_0ht32"]
+
+[node name="CoinButton" type="TextureButton" unique_id=651402155]
+offset_left = -24.0
+offset_top = -23.0
+offset_right = 24.0
+offset_bottom = 23.0
+script = ExtResource("1_0ht32")

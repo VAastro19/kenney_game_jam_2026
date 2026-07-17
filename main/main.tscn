@@ -1,3 +1,338 @@
-[gd_scene format=3 uid="uid://bwvej8u5ivcdm"]
+[gd_scene format=4 uid="uid://bwvej8u5ivcdm"]
+
+[ext_resource type="Texture2D" uid="uid://cpv0eaf2ytnru" path="res://assets/graphics/tiles/spritesheet.png" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://dowtit1cdvnmn" path="res://autoloads/game_manager.gd" id="1_bsumw"]
+[ext_resource type="Script" uid="uid://snrg1njymcov" path="res://main/scripts/camera_controller.gd" id="1_pjrb6"]
+[ext_resource type="Script" uid="uid://co7b5f67mv55y" path="res://ui/scripts/game_ui.gd" id="1_xwkvk"]
+[ext_resource type="PackedScene" uid="uid://c7dbpiwcukn06" path="res://ui/coin_counter.tscn" id="2_0i4oc"]
+[ext_resource type="PackedScene" uid="uid://b25dp2omijelv" path="res://ui/tab_button.tscn" id="2_c651c"]
+[ext_resource type="PackedScene" uid="uid://bqndwuq87n1cw" path="res://ui/coin_button.tscn" id="3_grrlh"]
+[ext_resource type="Texture2D" uid="uid://c2pgc2wuco2a1" path="res://assets/graphics/coins/blue_coin.png" id="4_0i4oc"]
+[ext_resource type="Texture2D" uid="uid://c0cxtfjfkdxag" path="res://assets/graphics/coins/green_coin.png" id="5_bsumw"]
+[ext_resource type="Texture2D" uid="uid://btpjfu7rn478t" path="res://assets/graphics/coins/yellow_coin.png" id="6_fwcvl"]
+[ext_resource type="Texture2D" uid="uid://dum12h5kdlrj4" path="res://assets/graphics/coins/red_coin.png" id="7_na0o7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pjrb6"]
+texture = ExtResource("1_53q0u")
+separation = Vector2i(2, 2)
+texture_region_size = Vector2i(120, 140)
+use_texture_padding = false
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_082uc"]
+tile_shape = 3
+tile_size = Vector2i(120, 140)
+sources/0 = SubResource("TileSetAtlasSource_pjrb6")
 
 [node name="Main" type="Node2D" unique_id=763955578]
+script = ExtResource("1_bsumw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=387036909]
+
+[node name="GameUI" type="Control" parent="CanvasLayer" unique_id=1980298311 node_paths=PackedStringArray("production_panel", "buildings_panel", "upgrades_panel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xwkvk")
+production_panel = NodePath("ProductionPanel")
+buildings_panel = NodePath("BuldingsPanel")
+upgrades_panel = NodePath("UpgradesPanel")
+
+[node name="CoinCounterContainer" type="VBoxContainer" parent="CanvasLayer/GameUI" unique_id=1680984725]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 0.36
+offset_right = -0.40000916
+
+[node name="BlueCoinCounter" parent="CanvasLayer/GameUI/CoinCounterContainer" unique_id=1105764973 instance=ExtResource("2_0i4oc")]
+layout_mode = 2
+
+[node name="GreenCoinCounter" parent="CanvasLayer/GameUI/CoinCounterContainer" unique_id=435244806 instance=ExtResource("2_0i4oc")]
+layout_mode = 2
+coin_type = 1
+
+[node name="YellowCoinCounter" parent="CanvasLayer/GameUI/CoinCounterContainer" unique_id=707743809 instance=ExtResource("2_0i4oc")]
+layout_mode = 2
+coin_type = 2
+
+[node name="RedCoinCounter" parent="CanvasLayer/GameUI/CoinCounterContainer" unique_id=1618948569 instance=ExtResource("2_0i4oc")]
+layout_mode = 2
+coin_type = 3
+
+[node name="TabButtonContainer" type="HBoxContainer" parent="CanvasLayer/GameUI" unique_id=341488247]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 0.3
+anchor_bottom = 0.75
+theme_override_constants/separation = 5
+
+[node name="ProductionButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=1094330538 instance=ExtResource("2_c651c")]
+layout_mode = 2
+text = "Production"
+
+[node name="BuildingsButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=2055077638 instance=ExtResource("2_c651c")]
+layout_mode = 2
+text = "Buildings"
+
+[node name="UpgradesButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=69960096 instance=ExtResource("2_c651c")]
+layout_mode = 2
+text = "Upgrades"
+
+[node name="ProductionPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=1257030725]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/ProductionPanel" unique_id=1747855191]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.7
+offset_bottom = -52.850006
+scale = Vector2(2, 2)
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="BlueCoinButton" parent="CanvasLayer/GameUI/ProductionPanel/HBoxContainer" unique_id=651402155 instance=ExtResource("3_grrlh")]
+layout_mode = 2
+texture_normal = ExtResource("4_0i4oc")
+
+[node name="GreenCoinButton" parent="CanvasLayer/GameUI/ProductionPanel/HBoxContainer" unique_id=259094335 instance=ExtResource("3_grrlh")]
+layout_mode = 2
+texture_normal = ExtResource("5_bsumw")
+coin_type = 1
+
+[node name="YellowCoinButton" parent="CanvasLayer/GameUI/ProductionPanel/HBoxContainer" unique_id=1251262437 instance=ExtResource("3_grrlh")]
+layout_mode = 2
+texture_normal = ExtResource("6_fwcvl")
+coin_type = 2
+
+[node name="RedCoinButton" parent="CanvasLayer/GameUI/ProductionPanel/HBoxContainer" unique_id=848216411 instance=ExtResource("3_grrlh")]
+layout_mode = 2
+texture_normal = ExtResource("7_na0o7")
+coin_type = 3
+
+[node name="BuldingsPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=960514707]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/GameUI/BuldingsPanel" unique_id=1348857720]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BUILDINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradesPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=432032579]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/GameUI/UpgradesPanel" unique_id=1931084271]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "UPGRADES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1031307378]
+zoom = Vector2(0.8, 0.8)
+limit_enabled = false
+limit_left = -1000
+limit_top = -700
+limit_right = 1000
+limit_bottom = 700
+limit_smoothed = true
+script = ExtResource("1_pjrb6")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1283353975]
+position = Vector2(0, 35)
+tile_map_data = PackedByteArray("AAD/////AAAKAAcAAAD///7/AAAEAAoAAAAAAP7/AAAEAAUAAAAAAP//AAAEAAQAAAAAAAAAAAAFAAEAAAD//wAAAAAEAAQAAAD+////AAAEAAgAAAACAAAAAAAEAAcAAAABAAAAAAAEAAgAAAAAAAEAAAAEAAoAAAD//wEAAAAEAAQAAAD+/wEAAAAEAAYAAAD9/wEAAAAEAAoAAAD9/wAAAAAEAAgAAAD9////AAAEAAgAAAD9//7/AAAEAAQAAAD+//7/AAAEAAgAAAD9//3/AAAEAAUAAAD+/wAAAAAEAAQAAAD+//3/AAAEAAgAAAD///3/AAAFAAEAAAAAAP3/AAAFAAEAAAABAP7/AAAFAAEAAAABAP//AAAEAAcAAAACAP//AAAEAAQAAAADAP7/AAAEAAYAAAACAP3/AAAEAAkAAAACAPz/AAAEAAUAAAABAPz/AAAEAAcAAAAAAPz/AAAEAAkAAAD///z/AAAEAAkAAAABAP3/AAAEAAgAAAACAP7/AAAEAAoAAAADAP//AAAEAAoAAAADAAAAAAAEAAoAAAACAAEAAAAEAAYAAAABAAEAAAAEAAYAAAABAAIAAAAEAAgAAAAAAAIAAAAEAAgAAAD//wIAAAAFAAEAAAABAPv/AAAEAAoAAAAAAPv/AAAEAAQAAAD///v/AAAEAAoAAAD+//v/AAAEAAcAAAD9//v/AAAEAAUAAAD9//z/AAAEAAoAAAD8//3/AAAEAAQAAAD8//7/AAAEAAUAAAD8////AAAEAAYAAAD+//z/AAAEAAUAAAD+/wIAAAAEAAoAAAABAAMAAAAEAAQAAAAAAAMAAAAEAAgAAAD//wMAAAAEAAUAAAD+/wMAAAAEAAoAAAD9/wMAAAAEAAQAAAD9/wIAAAAEAAYAAAD8/wEAAAAEAAUAAAD8/wAAAAAEAAgAAAD7////AAAFAAEAAAD7//7/AAAEAAYAAAD7//3/AAAEAAUAAAD8//z/AAAEAAoAAAD8//v/AAAFAAEAAAACAPv/AAAEAAYAAAADAPz/AAAEAAgAAAADAP3/AAAFAAEAAAAEAP7/AAAFAAEAAAAEAP//AAAFAAEAAAAEAAAAAAAEAAoAAAADAAEAAAAEAAQAAAADAAIAAAAFAAEAAAACAAMAAAAFAAEAAAACAAIAAAAFAAEAAAD6////AAAEAAgAAAD7/wAAAAAEAAgAAAD7/wEAAAAEAAQAAAD8/wIAAAAEAAgAAAD8/wMAAAAEAAUAAAD9/wQAAAAEAAgAAAD+/wQAAAAFAAEAAAD//wQAAAAFAAEAAAAAAAQAAAAEAAYAAAABAAQAAAAFAAEAAAACAAQAAAAFAAEAAAD9//r/AAAEAAcAAAD+//r/AAAEAAkAAAD///r/AAAEAAoAAAAAAPr/AAAEAAoAAAABAPr/AAAEAAYAAAACAPr/AAAEAAQAAAD5////AAAEAAUAAAD6//7/AAAEAAoAAAD6//3/AAAEAAoAAAD7//z/AAAFAAEAAAD7//v/AAAEAAcAAAD8//r/AAAEAAYAAAD8//n/AAAEAAQAAAD9//n/AAAEAAkAAAD+//n/AAAEAAkAAAD///n/AAAEAAoAAAAAAPn/AAAEAAkAAAABAPn/AAAEAAYAAAACAPn/AAAEAAcAAAADAPr/AAAEAAUAAAADAPv/AAAEAAYAAAAEAPz/AAAEAAkAAAAEAP3/AAAEAAUAAAAFAP7/AAAEAAcAAAAFAP//AAAEAAoAAAAFAAAAAAAEAAQAAAAEAAEAAAAEAAkAAAAEAAIAAAAEAAoAAAADAAMAAAAEAAgAAAADAAQAAAAEAAcAAAACAAUAAAAEAAcAAAABAAUAAAAEAAcAAAAAAAUAAAAEAAoAAAD//wUAAAAEAAQAAAD+/wUAAAAEAAUAAAD9/wUAAAAEAAQAAAD8/wUAAAAEAAoAAAD8/wQAAAAEAAoAAAD7/wMAAAAEAAQAAAD7/wIAAAAEAAUAAAD6/wAAAAAEAAcAAAD6/wEAAAAEAAQAAAADAPn/AAAFAAEAAAAEAPr/AAAEAAQAAAAEAPv/AAAEAAgAAAAFAPz/AAAFAAEAAAAFAP3/AAAEAAcAAAAGAP7/AAAEAAcAAAAEAPn/AAAEAAYAAAAFAPr/AAAEAAcAAAAFAPv/AAAEAAgAAAAGAPz/AAAEAAoAAAAGAP3/AAAFAAEAAAAFAPn/AAAEAAQAAAAGAPr/AAAFAAEAAAAGAPv/AAAEAAkAAAAHAPz/AAAEAAgAAAAGAPn/AAAEAAcAAAAHAPr/AAAEAAUAAAAHAPv/AAAFAAEAAAAHAPn/AAAEAAgAAAAHAP3/AAAEAAQAAAAHAP7/AAAEAAUAAAAHAP//AAAEAAcAAAAHAAAAAAAEAAoAAAAHAAEAAAAEAAQAAAAHAAIAAAAEAAcAAAAHAAMAAAAEAAgAAAAHAAQAAAAEAAcAAAAHAAUAAAAEAAYAAAAGAAUAAAAFAAEAAAAFAAUAAAAFAAEAAAAEAAUAAAAEAAgAAAADAAUAAAAEAAYAAAAEAAQAAAAEAAUAAAAEAAMAAAAEAAcAAAAFAAIAAAAEAAcAAAAFAAEAAAAEAAQAAAAGAAAAAAAEAAoAAAAGAP//AAAEAAkAAAAGAAEAAAAEAAgAAAAGAAIAAAAEAAYAAAAFAAMAAAAEAAYAAAAFAAQAAAAEAAYAAAAGAAMAAAAEAAYAAAAGAAQAAAAFAAEAAAD7//n/AAAFAAEAAAD7//r/AAAEAAgAAAD6//v/AAAEAAoAAAD6//z/AAAEAAYAAAD5//3/AAAEAAkAAAD5//7/AAAEAAgAAAD6//n/AAAEAAUAAAD6//r/AAAEAAgAAAD5//v/AAAEAAgAAAD5//z/AAAEAAkAAAD5//n/AAAEAAoAAAD5//r/AAAFAAEAAAD3//n/AAAEAAQAAAD4//n/AAAEAAgAAAD4//r/AAAEAAUAAAD4//v/AAAEAAQAAAD3//v/AAAFAAEAAAD4//z/AAAEAAgAAAD4//3/AAAEAAQAAAD3//3/AAAEAAgAAAD4//7/AAAEAAkAAAD4////AAAEAAcAAAD3////AAAEAAoAAAD4/wAAAAAEAAcAAAD5/wAAAAAEAAUAAAD5/wEAAAAFAAEAAAD4/wEAAAAFAAEAAAD3/wEAAAAEAAUAAAD4/wIAAAAEAAgAAAD3/wMAAAAEAAgAAAD4/wQAAAAEAAkAAAD3/wUAAAAEAAQAAAD4/wUAAAAEAAQAAAD5/wUAAAAEAAoAAAD6/wUAAAAEAAgAAAD7/wUAAAAEAAgAAAD7/wQAAAAEAAQAAAD6/wQAAAAEAAgAAAD5/wQAAAAEAAgAAAD4/wMAAAAEAAoAAAD5/wMAAAAEAAgAAAD6/wMAAAAEAAkAAAD6/wIAAAAEAAoAAAD5/wIAAAAFAAEAAAD4/wYAAAAEAAgAAAD3/wYAAAAEAAUAAAD5/wYAAAAEAAoAAAD6/wYAAAAEAAcAAAD7/wYAAAAEAAUAAAD8/wYAAAAEAAgAAAD9/wYAAAAEAAkAAAD+/wYAAAAEAAUAAAD//wYAAAAEAAgAAAAAAAYAAAAEAAcAAAABAAYAAAAEAAcAAAACAAYAAAAEAAUAAAADAAYAAAAEAAcAAAAEAAYAAAAEAAoAAAAFAAYAAAAFAAEAAAAGAAYAAAAEAAQAAAAHAAYAAAAFAAEAAAAIAAYAAAAEAAcAAAAIAAQAAAAEAAoAAAAIAAIAAAAEAAgAAAAIAAAAAAAEAAkAAAAIAP7/AAAEAAUAAAAIAPz/AAAEAAUAAAAIAPr/AAAEAAkAAAAIAPj/AAAFAAEAAAAHAPj/AAAEAAoAAAAGAPj/AAAEAAcAAAAFAPj/AAAEAAoAAAAEAPj/AAAEAAgAAAADAPj/AAAEAAkAAAACAPj/AAAEAAYAAAABAPj/AAAEAAcAAAAAAPj/AAAFAAEAAAD///j/AAAEAAYAAAD+//j/AAAEAAoAAAD9//j/AAAEAAUAAAD8//j/AAAFAAEAAAD7//j/AAAEAAcAAAD6//j/AAAEAAcAAAD5//j/AAAEAAQAAAD4//j/AAAEAAYAAAD3//j/AAAEAAYAAAD3//r/AAAEAAQAAAD3//z/AAAEAAcAAAD3//7/AAAEAAkAAAD3/wQAAAAEAAkAAAD2/wUAAAAFAAEAAAD2////AAAEAAYAAAD2//3/AAAEAAgAAAD2//v/AAAEAAYAAAD2//n/AAAEAAUAAAAIAPn/AAAEAAcAAAAIAPv/AAAEAAUAAAAIAP3/AAAEAAYAAAAIAP//AAAEAAYAAAAIAAEAAAAEAAUAAAAIAAMAAAAEAAQAAAAIAAUAAAAEAAoAAAD2//f/AAAEAAgAAAD2//j/AAAEAAoAAAD2//r/AAAEAAQAAAD2//z/AAAFAAEAAAD2//7/AAAFAAEAAAD2/wAAAAAEAAoAAAD2/wIAAAAFAAEAAAD3/wAAAAAEAAkAAAD2/wEAAAAFAAEAAAD3/wIAAAAEAAkAAAD2/wMAAAAEAAoAAAD2/wQAAAAEAAQAAAD2/wYAAAAEAAoAAAAJAAYAAAAEAAkAAAAJAAQAAAAEAAcAAAAJAAIAAAAEAAYAAAAJAAAAAAAEAAUAAAAJAP7/AAAEAAcAAAAJAPz/AAAEAAQAAAAJAPr/AAAEAAYAAAAJAPj/AAAEAAYAAAAIAPf/AAAEAAcAAAAHAPf/AAAEAAUAAAAGAPf/AAAEAAQAAAAFAPf/AAAEAAgAAAAEAPf/AAAEAAkAAAADAPf/AAAEAAkAAAACAPf/AAAEAAcAAAABAPf/AAAEAAcAAAAAAPf/AAAEAAcAAAD///f/AAAEAAQAAAD+//f/AAAFAAEAAAD9//f/AAAEAAQAAAD8//f/AAAEAAoAAAD7//f/AAAEAAkAAAD6//f/AAAEAAkAAAD5//f/AAAEAAcAAAD4//f/AAAEAAgAAAD3//f/AAAEAAoAAAD2/wcAAAAEAAYAAAD3/wcAAAAEAAoAAAD4/wcAAAAEAAUAAAD5/wcAAAAEAAYAAAD6/wcAAAAEAAYAAAD7/wcAAAAEAAoAAAD8/wcAAAAEAAQAAAD9/wcAAAAEAAYAAAD+/wcAAAAEAAoAAAD//wcAAAAFAAEAAAAAAAcAAAAEAAgAAAABAAcAAAAEAAkAAAACAAcAAAAEAAkAAAADAAcAAAAEAAcAAAAEAAcAAAAEAAcAAAAFAAcAAAAEAAkAAAAGAAcAAAAFAAEAAAAHAAcAAAAEAAkAAAAIAAcAAAAEAAgAAAD1/wcAAAAFAAEAAAD0/wcAAAAFAAEAAAD0/wYAAAAFAAEAAAD1/wYAAAAFAAEAAAD0/wUAAAAFAAEAAAD1/wUAAAAFAAEAAAD1/wQAAAAFAAEAAAD0/wQAAAAFAAEAAAD0/wMAAAAFAAEAAAD1/wMAAAAFAAEAAAD1/wIAAAAFAAEAAAD0/wIAAAAFAAEAAAD0/wEAAAAFAAEAAAD1/wEAAAAFAAEAAAD1/wAAAAAFAAEAAAD0/wAAAAAFAAEAAAD0////AAAFAAEAAAD1////AAAFAAEAAAD0//7/AAAFAAEAAAD1//7/AAAFAAEAAAD1//3/AAAFAAEAAAD0//3/AAAFAAEAAAD0//z/AAAFAAEAAAD1//z/AAAFAAEAAAD1//v/AAAFAAEAAAD0//v/AAAFAAEAAAD0//r/AAAFAAEAAAD1//r/AAAFAAEAAAD1//n/AAAFAAEAAAD0//n/AAAFAAEAAAD0//j/AAAFAAEAAAD1//j/AAAFAAEAAAD0//f/AAAFAAEAAAD1//f/AAAFAAEAAAAJAPf/AAAFAAEAAAAKAPf/AAAFAAEAAAALAPj/AAAFAAEAAAAKAPj/AAAFAAEAAAAJAPn/AAAFAAEAAAAKAPn/AAAFAAEAAAALAPr/AAAFAAEAAAAKAPr/AAAFAAEAAAAJAPv/AAAFAAEAAAAKAPv/AAAFAAEAAAALAPz/AAAFAAEAAAAKAPz/AAAFAAEAAAAJAP3/AAAFAAEAAAAKAP3/AAAFAAEAAAALAP7/AAAFAAEAAAAKAP7/AAAFAAEAAAAJAP//AAAFAAEAAAAKAP//AAAFAAEAAAALAAAAAAAFAAEAAAAKAAAAAAAFAAEAAAAJAAEAAAAFAAEAAAAKAAEAAAAFAAEAAAAKAAIAAAAFAAEAAAALAAIAAAAFAAEAAAAKAAMAAAAFAAEAAAAJAAMAAAAFAAEAAAAKAAQAAAAFAAEAAAALAAQAAAAFAAEAAAAKAAUAAAAFAAEAAAAJAAUAAAAFAAEAAAAKAAYAAAAFAAEAAAALAAYAAAAFAAEAAAAKAAcAAAAFAAEAAAAJAAcAAAAFAAEAAAAKAAgAAAAFAAEAAAAJAAgAAAAFAAEAAAAJAAkAAAAFAAEAAAAIAAkAAAAFAAEAAAAIAAgAAAAFAAEAAAAHAAkAAAAFAAEAAAAHAAgAAAAFAAEAAAAGAAkAAAAFAAEAAAAFAAkAAAAFAAEAAAAEAAkAAAAFAAEAAAADAAkAAAAFAAEAAAACAAkAAAAFAAEAAAABAAkAAAAFAAEAAAAAAAkAAAAFAAEAAAD//wkAAAAFAAEAAAD+/wkAAAAFAAEAAAD9/wkAAAAFAAEAAAD8/wkAAAAFAAEAAAD9/wgAAAAFAAEAAAD+/wgAAAAFAAEAAAD//wgAAAAFAAEAAAAAAAgAAAAFAAEAAAABAAgAAAAFAAEAAAACAAgAAAAFAAEAAAADAAgAAAAFAAEAAAAEAAgAAAAFAAEAAAAFAAgAAAAFAAEAAAAGAAgAAAAFAAEAAAD8/wgAAAAFAAEAAAD7/wgAAAAFAAEAAAD6/wgAAAAFAAEAAAD5/wkAAAAFAAEAAAD5/wgAAAAFAAEAAAD4/wkAAAAFAAEAAAD4/wgAAAAFAAEAAAD3/wkAAAAFAAEAAAD3/wgAAAAFAAEAAAD2/wgAAAAFAAEAAAD1/wgAAAAFAAEAAAD1/wkAAAAFAAEAAAD2/wkAAAAFAAEAAAD6/wkAAAAFAAEAAAD7/wkAAAAFAAEAAAD1//b/AAAFAAEAAAD2//b/AAAFAAEAAAD3//b/AAAFAAEAAAD4//b/AAAFAAEAAAD5//b/AAAFAAEAAAD6//b/AAAFAAEAAAD7//b/AAAFAAEAAAD8//b/AAAFAAEAAAD9//b/AAAFAAEAAAD+//b/AAAFAAEAAAD///b/AAAFAAEAAAAAAPb/AAAFAAEAAAABAPb/AAAFAAEAAAACAPb/AAAFAAEAAAADAPb/AAAFAAEAAAAEAPb/AAAFAAEAAAAFAPb/AAAFAAEAAAAGAPb/AAAFAAEAAAAHAPb/AAAFAAEAAAAIAPb/AAAFAAEAAAAJAPb/AAAFAAEAAAAKAPb/AAAFAAEAAAD1//X/AAAFAAEAAAD2//X/AAAFAAEAAAD3//X/AAAFAAEAAAD4//X/AAAFAAEAAAD5//X/AAAFAAEAAAD6//X/AAAFAAEAAAD7//X/AAAFAAEAAAD8//X/AAAFAAEAAAD9//X/AAAFAAEAAAD+//X/AAAFAAEAAAD///X/AAAFAAEAAAAAAPX/AAAFAAEAAAABAPX/AAAFAAEAAAACAPX/AAAFAAEAAAADAPX/AAAFAAEAAAAEAPX/AAAFAAEAAAAFAPX/AAAFAAEAAAAGAPX/AAAFAAEAAAAHAPX/AAAFAAEAAAAIAPX/AAAFAAEAAAAJAPX/AAAFAAEAAAA=")
+tile_set = SubResource("TileSet_082uc")
+
+[connection signal="pressed" from="CanvasLayer/GameUI/TabButtonContainer/ProductionButton" to="CanvasLayer/GameUI" method="_on_production_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/TabButtonContainer/BuildingsButton" to="CanvasLayer/GameUI" method="_on_buildings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/TabButtonContainer/UpgradesButton" to="CanvasLayer/GameUI" method="_on_upgrades_button_pressed"]
