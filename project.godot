@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="KenneyGameJam2026"
+config/tags=PackedStringArray("gamejam", "smallgame")
+run/main_scene="uid://jlbgrqoqh5fq"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://cveik27wkkgla"
+
+[autoload]
+
+SceneLoader="*uid://dafi2mqd1wi21"
 
 [display]
 
