@@ -1,10 +1,43 @@
 [gd_scene format=3 uid="uid://bqndwuq87n1cw"]
 
-[ext_resource type="Script" uid="uid://id7u14i2etdy" path="res://ui/scripts/coin_button.gd" id="1_0ht32"]
+[ext_resource type="Script" uid="uid://vgqbor0c7wvy" path="res://ui/scripts/coin_button.gd" id="1_0ht32"]
+[ext_resource type="Texture2D" uid="uid://c2pgc2wuco2a1" path="res://assets/graphics/coins/blue_coin.png" id="2_hhq2s"]
+[ext_resource type="Script" uid="uid://id7u14i2etdy" path="res://ui/scripts/coin_button_visuals.gd" id="2_s7sak"]
 
-[node name="CoinButton" type="TextureButton" unique_id=651402155]
-offset_left = -24.0
-offset_top = -23.0
-offset_right = 24.0
-offset_bottom = 23.0
+[sub_resource type="LabelSettings" id="LabelSettings_082uc"]
+font_size = 48
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.53333336)
+
+[node name="CoinButton" type="Control" unique_id=1278047215]
+custom_minimum_size = Vector2(48, 46)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -48.0
+offset_top = -46.0
+offset_right = 48.0
+offset_bottom = 46.0
 script = ExtResource("1_0ht32")
+
+[node name="Button" type="TextureButton" parent="." unique_id=1393783641]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 92.0
+texture_normal = ExtResource("2_hhq2s")
+stretch_mode = 0
+script = ExtResource("2_s7sak")
+
+[node name="Label" type="Label" parent="." unique_id=1118174786]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 100.0
+offset_bottom = 36.0
+grow_vertical = 0
+text = "0 / s"
+label_settings = SubResource("LabelSettings_082uc")
+horizontal_alignment = 1
+vertical_alignment = 1

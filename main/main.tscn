@@ -7,10 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c7dbpiwcukn06" path="res://ui/coin_counter.tscn" id="2_0i4oc"]
 [ext_resource type="PackedScene" uid="uid://b25dp2omijelv" path="res://ui/tab_button.tscn" id="2_c651c"]
 [ext_resource type="PackedScene" uid="uid://bqndwuq87n1cw" path="res://ui/coin_button.tscn" id="3_grrlh"]
-[ext_resource type="Texture2D" uid="uid://c2pgc2wuco2a1" path="res://assets/graphics/coins/blue_coin.png" id="4_0i4oc"]
-[ext_resource type="Texture2D" uid="uid://c0cxtfjfkdxag" path="res://assets/graphics/coins/green_coin.png" id="5_bsumw"]
-[ext_resource type="Texture2D" uid="uid://btpjfu7rn478t" path="res://assets/graphics/coins/yellow_coin.png" id="6_fwcvl"]
-[ext_resource type="Texture2D" uid="uid://dum12h5kdlrj4" path="res://assets/graphics/coins/red_coin.png" id="7_na0o7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pjrb6"]
 texture = ExtResource("1_53q0u")
@@ -227,14 +223,17 @@ theme_override_constants/separation = 5
 
 [node name="ProductionButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=1094330538 instance=ExtResource("2_c651c")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Production"
 
 [node name="BuildingsButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=2055077638 instance=ExtResource("2_c651c")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Buildings"
 
 [node name="UpgradesButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=69960096 instance=ExtResource("2_c651c")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Upgrades"
 
 [node name="ProductionPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=1257030725]
@@ -249,31 +248,25 @@ grow_vertical = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/ProductionPanel" unique_id=1747855191]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.05
-anchor_right = 0.5
+anchor_top = 0.1
+anchor_right = 1.0
 anchor_bottom = 0.7
-offset_bottom = -52.850006
-scale = Vector2(2, 2)
-theme_override_constants/separation = 100
+theme_override_constants/separation = 200
 alignment = 1
 
 [node name="BlueCoinButton" parent="CanvasLayer/GameUI/ProductionPanel/HBoxContainer" unique_id=651402155 instance=ExtResource("3_grrlh")]
 layout_mode = 2
-texture_normal = ExtResource("4_0i4oc")
 
 [node name="GreenCoinButton" parent="CanvasLayer/GameUI/ProductionPanel/HBoxContainer" unique_id=259094335 instance=ExtResource("3_grrlh")]
 layout_mode = 2
-texture_normal = ExtResource("5_bsumw")
 coin_type = 1
 
 [node name="YellowCoinButton" parent="CanvasLayer/GameUI/ProductionPanel/HBoxContainer" unique_id=1251262437 instance=ExtResource("3_grrlh")]
 layout_mode = 2
-texture_normal = ExtResource("6_fwcvl")
 coin_type = 2
 
 [node name="RedCoinButton" parent="CanvasLayer/GameUI/ProductionPanel/HBoxContainer" unique_id=848216411 instance=ExtResource("3_grrlh")]
 layout_mode = 2
-texture_normal = ExtResource("7_na0o7")
 coin_type = 3
 
 [node name="BuldingsPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=960514707]

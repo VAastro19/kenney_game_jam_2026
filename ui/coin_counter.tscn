@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://c2pgc2wuco2a1" path="res://assets/graphics/coins/blue_coin.png" id="2_8agjf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_082uc"]
-font_size = 32
+font_size = 52
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.6392157)
 
 [node name="CoinCounter" type="Control" unique_id=1105764973]
 custom_minimum_size = Vector2(100, 50)

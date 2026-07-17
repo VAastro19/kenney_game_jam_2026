@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://t4mgvl48fc6e" path="res://ui/scripts/main_menu.gd" id="1_t7e0r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_082uc"]
-font_size = 32
+font_size = 60
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 4
@@ -75,17 +75,23 @@ grow_vertical = 2
 [node name="PlayButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=1701517877]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=1755251176]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
 text = "Settings
 "
 
 [node name="QuitButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=388231713]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
 text = "Quit"
 
 [node name="SettingsPanel" type="Panel" parent="." unique_id=991085078]
@@ -119,6 +125,8 @@ grow_vertical = 2
 
 [node name="FullscreenButton" type="CheckBox" parent="SettingsPanel/VBoxContainer" unique_id=1766261286]
 layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
 button_pressed = true
 text = "Fullscreen"
 alignment = 1
@@ -126,6 +134,8 @@ alignment = 1
 [node name="BackButton" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=1057214472]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
 text = "Back"
 
 [connection signal="pressed" from="ButtonPanel/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
