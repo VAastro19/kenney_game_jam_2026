@@ -29,6 +29,9 @@ func _ready() -> void:
 
 func _on_coin_update(amount: int, type: GameManager.CoinType) -> void:
 	if type == coin_type:
-		cur_amount += amount
-		amount_label.text = str(cur_amount)
-	
+		if cur_amount + amount <= GameManager.coin_cap:
+			cur_amount += amount
+			amount_label.text = str(cur_amount) + " / " + str(GameManager.coin_cap)
+
+func _on_coin_cap_update() -> void:
+	_on_coin_update(0, coin_type)

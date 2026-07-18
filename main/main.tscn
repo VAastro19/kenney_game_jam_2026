@@ -1,12 +1,38 @@
 [gd_scene format=4 uid="uid://bwvej8u5ivcdm"]
 
 [ext_resource type="Texture2D" uid="uid://cpv0eaf2ytnru" path="res://assets/graphics/tiles/spritesheet.png" id="1_53q0u"]
-[ext_resource type="Script" uid="uid://dowtit1cdvnmn" path="res://autoloads/game_manager.gd" id="1_bsumw"]
 [ext_resource type="Script" uid="uid://snrg1njymcov" path="res://main/scripts/camera_controller.gd" id="1_pjrb6"]
 [ext_resource type="Script" uid="uid://co7b5f67mv55y" path="res://ui/scripts/game_ui.gd" id="1_xwkvk"]
 [ext_resource type="PackedScene" uid="uid://c7dbpiwcukn06" path="res://ui/coin_counter.tscn" id="2_0i4oc"]
 [ext_resource type="PackedScene" uid="uid://b25dp2omijelv" path="res://ui/tab_button.tscn" id="2_c651c"]
 [ext_resource type="PackedScene" uid="uid://bqndwuq87n1cw" path="res://ui/coin_button.tscn" id="3_grrlh"]
+[ext_resource type="PackedScene" uid="uid://ds8xh1k65hfrg" path="res://ui/building_button.tscn" id="6_67ri8"]
+[ext_resource type="Texture2D" uid="uid://5gi80ndv4pcn" path="res://assets/graphics/inputs/mouse_right.png" id="7_fwcvl"]
+[ext_resource type="Script" uid="uid://dexxsmrckgk2k" path="res://main/scripts/map_manager.gd" id="7_grrlh"]
+[ext_resource type="Texture2D" uid="uid://b2ab7srnj13lv" path="res://assets/graphics/inputs/mouse_left.png" id="8_na0o7"]
+[ext_resource type="Texture2D" uid="uid://b7k6itilypcvf" path="res://assets/graphics/inputs/keyboard_escape.png" id="9_73k8k"]
+[ext_resource type="Texture2D" uid="uid://dhjidjemprqtg" path="res://assets/graphics/tiles/grass1.png" id="12_fwcvl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q0ro8"]
+font_size = 32
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.58431375)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pwp2m"]
+font_size = 32
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.5411765)
+
+[sub_resource type="LabelSettings" id="LabelSettings_082uc"]
+font_size = 32
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.5254902)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pjrb6"]
 texture = ExtResource("1_53q0u")
@@ -175,11 +201,11 @@ tile_size = Vector2i(120, 140)
 sources/0 = SubResource("TileSetAtlasSource_pjrb6")
 
 [node name="Main" type="Node2D" unique_id=763955578]
-script = ExtResource("1_bsumw")
+script = ExtResource("7_grrlh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=387036909]
 
-[node name="GameUI" type="Control" parent="CanvasLayer" unique_id=1980298311 node_paths=PackedStringArray("production_panel", "buildings_panel", "upgrades_panel")]
+[node name="GameUI" type="Control" parent="CanvasLayer" unique_id=1980298311 node_paths=PackedStringArray("production_panel", "buildings_panel", "upgrades_panel", "l_click_label", "l_click_icon", "r_click_label", "r_click_icon")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -190,6 +216,10 @@ script = ExtResource("1_xwkvk")
 production_panel = NodePath("ProductionPanel")
 buildings_panel = NodePath("BuldingsPanel")
 upgrades_panel = NodePath("UpgradesPanel")
+l_click_label = NodePath("InputHints/GridContainer/LeftClickLabel")
+l_click_icon = NodePath("InputHints/GridContainer/LeftClickIcon")
+r_click_label = NodePath("InputHints/GridContainer/RightClickLabel")
+r_click_icon = NodePath("InputHints/GridContainer/RightClickIcon")
 
 [node name="CoinCounterContainer" type="VBoxContainer" parent="CanvasLayer/GameUI" unique_id=1680984725]
 layout_mode = 1
@@ -237,6 +267,7 @@ theme_override_font_sizes/font_size = 32
 text = "Upgrades"
 
 [node name="ProductionPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=1257030725]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.75
@@ -270,7 +301,6 @@ layout_mode = 2
 coin_type = 3
 
 [node name="BuldingsPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=960514707]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.75
@@ -279,16 +309,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/GameUI/BuldingsPanel" unique_id=1348857720]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/BuldingsPanel" unique_id=1487489757]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "BUILDINGS"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_top = -1.1444092e-05
+offset_bottom = -1.5258789e-05
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="WarehouseButton" parent="CanvasLayer/GameUI/BuldingsPanel/HBoxContainer" unique_id=1595533144 instance=ExtResource("6_67ri8")]
+layout_mode = 2
+building_type = 1
+
+[node name="WindmillButton" parent="CanvasLayer/GameUI/BuldingsPanel/HBoxContainer" unique_id=405535717 instance=ExtResource("6_67ri8")]
+layout_mode = 2
+building_type = 2
+
+[node name="LumberButton" parent="CanvasLayer/GameUI/BuldingsPanel/HBoxContainer" unique_id=1295113019 instance=ExtResource("6_67ri8")]
+layout_mode = 2
+building_type = 3
+
+[node name="BlacksmithButton" parent="CanvasLayer/GameUI/BuldingsPanel/HBoxContainer" unique_id=1184142548 instance=ExtResource("6_67ri8")]
+layout_mode = 2
+building_type = 4
+
+[node name="CastleButton" parent="CanvasLayer/GameUI/BuldingsPanel/HBoxContainer" unique_id=635502691 instance=ExtResource("6_67ri8")]
+layout_mode = 2
+building_type = 5
 
 [node name="UpgradesPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=432032579]
 visible = false
@@ -311,6 +360,67 @@ text = "UPGRADES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="InputHints" type="Control" parent="CanvasLayer/GameUI" unique_id=1470617035]
+layout_mode = 1
+anchor_left = 0.799
+anchor_right = 1.0
+anchor_bottom = 0.307
+offset_left = 0.55200195
+offset_bottom = 0.06399536
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/GameUI/InputHints" unique_id=325753381]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="EscLabel" type="Label" parent="CanvasLayer/GameUI/InputHints/GridContainer" unique_id=1006208759]
+layout_mode = 2
+text = "Open pause menu"
+label_settings = SubResource("LabelSettings_q0ro8")
+vertical_alignment = 1
+
+[node name="EscIcon" type="TextureRect" parent="CanvasLayer/GameUI/InputHints/GridContainer" unique_id=564573180]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.7, 0.7)
+texture = ExtResource("9_73k8k")
+
+[node name="LeftClickLabel" type="Label" parent="CanvasLayer/GameUI/InputHints/GridContainer" unique_id=1243274883]
+visible = false
+layout_mode = 2
+text = "Place building"
+label_settings = SubResource("LabelSettings_pwp2m")
+vertical_alignment = 1
+
+[node name="LeftClickIcon" type="TextureRect" parent="CanvasLayer/GameUI/InputHints/GridContainer" unique_id=930369909]
+visible = false
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.7, 0.7)
+texture = ExtResource("8_na0o7")
+
+[node name="RightClickLabel" type="Label" parent="CanvasLayer/GameUI/InputHints/GridContainer" unique_id=1021331369]
+visible = false
+layout_mode = 2
+text = "Exit build mode"
+label_settings = SubResource("LabelSettings_082uc")
+vertical_alignment = 1
+
+[node name="RightClickIcon" type="TextureRect" parent="CanvasLayer/GameUI/InputHints/GridContainer" unique_id=595486612]
+visible = false
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_fwcvl")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1031307378]
 zoom = Vector2(0.8, 0.8)
 limit_enabled = false
@@ -322,9 +432,15 @@ limit_smoothed = true
 script = ExtResource("1_pjrb6")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1283353975]
-position = Vector2(0, 35)
 tile_map_data = PackedByteArray("AAD/////AAAKAAcAAAD///7/AAAEAAoAAAAAAP7/AAAEAAUAAAAAAP//AAAEAAQAAAAAAAAAAAAFAAEAAAD//wAAAAAEAAQAAAD+////AAAEAAgAAAACAAAAAAAEAAcAAAABAAAAAAAEAAgAAAAAAAEAAAAEAAoAAAD//wEAAAAEAAQAAAD+/wEAAAAEAAYAAAD9/wEAAAAEAAoAAAD9/wAAAAAEAAgAAAD9////AAAEAAgAAAD9//7/AAAEAAQAAAD+//7/AAAEAAgAAAD9//3/AAAEAAUAAAD+/wAAAAAEAAQAAAD+//3/AAAEAAgAAAD///3/AAAFAAEAAAAAAP3/AAAFAAEAAAABAP7/AAAFAAEAAAABAP//AAAEAAcAAAACAP//AAAEAAQAAAADAP7/AAAEAAYAAAACAP3/AAAEAAkAAAACAPz/AAAEAAUAAAABAPz/AAAEAAcAAAAAAPz/AAAEAAkAAAD///z/AAAEAAkAAAABAP3/AAAEAAgAAAACAP7/AAAEAAoAAAADAP//AAAEAAoAAAADAAAAAAAEAAoAAAACAAEAAAAEAAYAAAABAAEAAAAEAAYAAAABAAIAAAAEAAgAAAAAAAIAAAAEAAgAAAD//wIAAAAFAAEAAAABAPv/AAAEAAoAAAAAAPv/AAAEAAQAAAD///v/AAAEAAoAAAD+//v/AAAEAAcAAAD9//v/AAAEAAUAAAD9//z/AAAEAAoAAAD8//3/AAAEAAQAAAD8//7/AAAEAAUAAAD8////AAAEAAYAAAD+//z/AAAEAAUAAAD+/wIAAAAEAAoAAAABAAMAAAAEAAQAAAAAAAMAAAAEAAgAAAD//wMAAAAEAAUAAAD+/wMAAAAEAAoAAAD9/wMAAAAEAAQAAAD9/wIAAAAEAAYAAAD8/wEAAAAEAAUAAAD8/wAAAAAEAAgAAAD7////AAAFAAEAAAD7//7/AAAEAAYAAAD7//3/AAAEAAUAAAD8//z/AAAEAAoAAAD8//v/AAAFAAEAAAACAPv/AAAEAAYAAAADAPz/AAAEAAgAAAADAP3/AAAFAAEAAAAEAP7/AAAFAAEAAAAEAP//AAAFAAEAAAAEAAAAAAAEAAoAAAADAAEAAAAEAAQAAAADAAIAAAAFAAEAAAACAAMAAAAFAAEAAAACAAIAAAAFAAEAAAD6////AAAEAAgAAAD7/wAAAAAEAAgAAAD7/wEAAAAEAAQAAAD8/wIAAAAEAAgAAAD8/wMAAAAEAAUAAAD9/wQAAAAEAAgAAAD+/wQAAAAFAAEAAAD//wQAAAAFAAEAAAAAAAQAAAAEAAYAAAABAAQAAAAFAAEAAAACAAQAAAAFAAEAAAD9//r/AAAEAAcAAAD+//r/AAAEAAkAAAD///r/AAAEAAoAAAAAAPr/AAAEAAoAAAABAPr/AAAEAAYAAAACAPr/AAAEAAQAAAD5////AAAEAAUAAAD6//7/AAAEAAoAAAD6//3/AAAEAAoAAAD7//z/AAAFAAEAAAD7//v/AAAEAAcAAAD8//r/AAAEAAYAAAD8//n/AAAEAAQAAAD9//n/AAAEAAkAAAD+//n/AAAEAAkAAAD///n/AAAEAAoAAAAAAPn/AAAEAAkAAAABAPn/AAAEAAYAAAACAPn/AAAEAAcAAAADAPr/AAAEAAUAAAADAPv/AAAEAAYAAAAEAPz/AAAEAAkAAAAEAP3/AAAEAAUAAAAFAP7/AAAEAAcAAAAFAP//AAAEAAoAAAAFAAAAAAAEAAQAAAAEAAEAAAAEAAkAAAAEAAIAAAAEAAoAAAADAAMAAAAEAAgAAAADAAQAAAAEAAcAAAACAAUAAAAEAAcAAAABAAUAAAAEAAcAAAAAAAUAAAAEAAoAAAD//wUAAAAEAAQAAAD+/wUAAAAEAAUAAAD9/wUAAAAEAAQAAAD8/wUAAAAEAAoAAAD8/wQAAAAEAAoAAAD7/wMAAAAEAAQAAAD7/wIAAAAEAAUAAAD6/wAAAAAEAAcAAAD6/wEAAAAEAAQAAAADAPn/AAAFAAEAAAAEAPr/AAAEAAQAAAAEAPv/AAAEAAgAAAAFAPz/AAAFAAEAAAAFAP3/AAAEAAcAAAAGAP7/AAAEAAcAAAAEAPn/AAAEAAYAAAAFAPr/AAAEAAcAAAAFAPv/AAAEAAgAAAAGAPz/AAAEAAoAAAAGAP3/AAAFAAEAAAAFAPn/AAAEAAQAAAAGAPr/AAAFAAEAAAAGAPv/AAAEAAkAAAAHAPz/AAAEAAgAAAAGAPn/AAAEAAcAAAAHAPr/AAAEAAUAAAAHAPv/AAAFAAEAAAAHAPn/AAAEAAgAAAAHAP3/AAAEAAQAAAAHAP7/AAAEAAUAAAAHAP//AAAEAAcAAAAHAAAAAAAEAAoAAAAHAAEAAAAEAAQAAAAHAAIAAAAEAAcAAAAHAAMAAAAEAAgAAAAHAAQAAAAEAAcAAAAHAAUAAAAEAAYAAAAGAAUAAAAFAAEAAAAFAAUAAAAFAAEAAAAEAAUAAAAEAAgAAAADAAUAAAAEAAYAAAAEAAQAAAAEAAUAAAAEAAMAAAAEAAcAAAAFAAIAAAAEAAcAAAAFAAEAAAAEAAQAAAAGAAAAAAAEAAoAAAAGAP//AAAEAAkAAAAGAAEAAAAEAAgAAAAGAAIAAAAEAAYAAAAFAAMAAAAEAAYAAAAFAAQAAAAEAAYAAAAGAAMAAAAEAAYAAAAGAAQAAAAFAAEAAAD7//n/AAAFAAEAAAD7//r/AAAEAAgAAAD6//v/AAAEAAoAAAD6//z/AAAEAAYAAAD5//3/AAAEAAkAAAD5//7/AAAEAAgAAAD6//n/AAAEAAUAAAD6//r/AAAEAAgAAAD5//v/AAAEAAgAAAD5//z/AAAEAAkAAAD5//n/AAAEAAoAAAD5//r/AAAFAAEAAAD3//n/AAAEAAQAAAD4//n/AAAEAAgAAAD4//r/AAAEAAUAAAD4//v/AAAEAAQAAAD3//v/AAAFAAEAAAD4//z/AAAEAAgAAAD4//3/AAAEAAQAAAD3//3/AAAEAAgAAAD4//7/AAAEAAkAAAD4////AAAEAAcAAAD3////AAAEAAoAAAD4/wAAAAAEAAcAAAD5/wAAAAAEAAUAAAD5/wEAAAAFAAEAAAD4/wEAAAAFAAEAAAD3/wEAAAAEAAUAAAD4/wIAAAAEAAgAAAD3/wMAAAAEAAgAAAD4/wQAAAAEAAkAAAD3/wUAAAAEAAQAAAD4/wUAAAAEAAQAAAD5/wUAAAAEAAoAAAD6/wUAAAAEAAgAAAD7/wUAAAAEAAgAAAD7/wQAAAAEAAQAAAD6/wQAAAAEAAgAAAD5/wQAAAAEAAgAAAD4/wMAAAAEAAoAAAD5/wMAAAAEAAgAAAD6/wMAAAAEAAkAAAD6/wIAAAAEAAoAAAD5/wIAAAAFAAEAAAD4/wYAAAAEAAgAAAD3/wYAAAAEAAUAAAD5/wYAAAAEAAoAAAD6/wYAAAAEAAcAAAD7/wYAAAAEAAUAAAD8/wYAAAAEAAgAAAD9/wYAAAAEAAkAAAD+/wYAAAAEAAUAAAD//wYAAAAEAAgAAAAAAAYAAAAEAAcAAAABAAYAAAAEAAcAAAACAAYAAAAEAAUAAAADAAYAAAAEAAcAAAAEAAYAAAAEAAoAAAAFAAYAAAAFAAEAAAAGAAYAAAAEAAQAAAAHAAYAAAAFAAEAAAAIAAYAAAAEAAcAAAAIAAQAAAAEAAoAAAAIAAIAAAAEAAgAAAAIAAAAAAAEAAkAAAAIAP7/AAAEAAUAAAAIAPz/AAAEAAUAAAAIAPr/AAAEAAkAAAAIAPj/AAAFAAEAAAAHAPj/AAAEAAoAAAAGAPj/AAAEAAcAAAAFAPj/AAAEAAoAAAAEAPj/AAAEAAgAAAADAPj/AAAEAAkAAAACAPj/AAAEAAYAAAABAPj/AAAEAAcAAAAAAPj/AAAFAAEAAAD///j/AAAEAAYAAAD+//j/AAAEAAoAAAD9//j/AAAEAAUAAAD8//j/AAAFAAEAAAD7//j/AAAEAAcAAAD6//j/AAAEAAcAAAD5//j/AAAEAAQAAAD4//j/AAAEAAYAAAD3//j/AAAEAAYAAAD3//r/AAAEAAQAAAD3//z/AAAEAAcAAAD3//7/AAAEAAkAAAD3/wQAAAAEAAkAAAD2/wUAAAAFAAEAAAD2////AAAEAAYAAAD2//3/AAAEAAgAAAD2//v/AAAEAAYAAAD2//n/AAAEAAUAAAAIAPn/AAAEAAcAAAAIAPv/AAAEAAUAAAAIAP3/AAAEAAYAAAAIAP//AAAEAAYAAAAIAAEAAAAEAAUAAAAIAAMAAAAEAAQAAAAIAAUAAAAEAAoAAAD2//f/AAAEAAgAAAD2//j/AAAEAAoAAAD2//r/AAAEAAQAAAD2//z/AAAFAAEAAAD2//7/AAAFAAEAAAD2/wAAAAAEAAoAAAD2/wIAAAAFAAEAAAD3/wAAAAAEAAkAAAD2/wEAAAAFAAEAAAD3/wIAAAAEAAkAAAD2/wMAAAAEAAoAAAD2/wQAAAAEAAQAAAD2/wYAAAAEAAoAAAAJAAYAAAAEAAkAAAAJAAQAAAAEAAcAAAAJAAIAAAAEAAYAAAAJAAAAAAAEAAUAAAAJAP7/AAAEAAcAAAAJAPz/AAAEAAQAAAAJAPr/AAAEAAYAAAAJAPj/AAAEAAYAAAAIAPf/AAAEAAcAAAAHAPf/AAAEAAUAAAAGAPf/AAAEAAQAAAAFAPf/AAAEAAgAAAAEAPf/AAAEAAkAAAADAPf/AAAEAAkAAAACAPf/AAAEAAcAAAABAPf/AAAEAAcAAAAAAPf/AAAEAAcAAAD///f/AAAEAAQAAAD+//f/AAAFAAEAAAD9//f/AAAEAAQAAAD8//f/AAAEAAoAAAD7//f/AAAEAAkAAAD6//f/AAAEAAkAAAD5//f/AAAEAAcAAAD4//f/AAAEAAgAAAD3//f/AAAEAAoAAAD2/wcAAAAEAAYAAAD3/wcAAAAEAAoAAAD4/wcAAAAEAAUAAAD5/wcAAAAEAAYAAAD6/wcAAAAEAAYAAAD7/wcAAAAEAAoAAAD8/wcAAAAEAAQAAAD9/wcAAAAEAAYAAAD+/wcAAAAEAAoAAAD//wcAAAAFAAEAAAAAAAcAAAAEAAgAAAABAAcAAAAEAAkAAAACAAcAAAAEAAkAAAADAAcAAAAEAAcAAAAEAAcAAAAEAAcAAAAFAAcAAAAEAAkAAAAGAAcAAAAFAAEAAAAHAAcAAAAEAAkAAAAIAAcAAAAEAAgAAAD1/wcAAAAFAAEAAAD0/wcAAAAFAAEAAAD0/wYAAAAFAAEAAAD1/wYAAAAFAAEAAAD0/wUAAAAFAAEAAAD1/wUAAAAFAAEAAAD1/wQAAAAFAAEAAAD0/wQAAAAFAAEAAAD0/wMAAAAFAAEAAAD1/wMAAAAFAAEAAAD1/wIAAAAFAAEAAAD0/wIAAAAFAAEAAAD0/wEAAAAFAAEAAAD1/wEAAAAFAAEAAAD1/wAAAAAFAAEAAAD0/wAAAAAFAAEAAAD0////AAAFAAEAAAD1////AAAFAAEAAAD0//7/AAAFAAEAAAD1//7/AAAFAAEAAAD1//3/AAAFAAEAAAD0//3/AAAFAAEAAAD0//z/AAAFAAEAAAD1//z/AAAFAAEAAAD1//v/AAAFAAEAAAD0//v/AAAFAAEAAAD0//r/AAAFAAEAAAD1//r/AAAFAAEAAAD1//n/AAAFAAEAAAD0//n/AAAFAAEAAAD0//j/AAAFAAEAAAD1//j/AAAFAAEAAAD0//f/AAAFAAEAAAD1//f/AAAFAAEAAAAJAPf/AAAFAAEAAAAKAPf/AAAFAAEAAAALAPj/AAAFAAEAAAAKAPj/AAAFAAEAAAAJAPn/AAAFAAEAAAAKAPn/AAAFAAEAAAALAPr/AAAFAAEAAAAKAPr/AAAFAAEAAAAJAPv/AAAFAAEAAAAKAPv/AAAFAAEAAAALAPz/AAAFAAEAAAAKAPz/AAAFAAEAAAAJAP3/AAAFAAEAAAAKAP3/AAAFAAEAAAALAP7/AAAFAAEAAAAKAP7/AAAFAAEAAAAJAP//AAAFAAEAAAAKAP//AAAFAAEAAAALAAAAAAAFAAEAAAAKAAAAAAAFAAEAAAAJAAEAAAAFAAEAAAAKAAEAAAAFAAEAAAAKAAIAAAAFAAEAAAALAAIAAAAFAAEAAAAKAAMAAAAFAAEAAAAJAAMAAAAFAAEAAAAKAAQAAAAFAAEAAAALAAQAAAAFAAEAAAAKAAUAAAAFAAEAAAAJAAUAAAAFAAEAAAAKAAYAAAAFAAEAAAALAAYAAAAFAAEAAAAKAAcAAAAFAAEAAAAJAAcAAAAFAAEAAAAKAAgAAAAFAAEAAAAJAAgAAAAFAAEAAAAJAAkAAAAFAAEAAAAIAAkAAAAFAAEAAAAIAAgAAAAFAAEAAAAHAAkAAAAFAAEAAAAHAAgAAAAFAAEAAAAGAAkAAAAFAAEAAAAFAAkAAAAFAAEAAAAEAAkAAAAFAAEAAAADAAkAAAAFAAEAAAACAAkAAAAFAAEAAAABAAkAAAAFAAEAAAAAAAkAAAAFAAEAAAD//wkAAAAFAAEAAAD+/wkAAAAFAAEAAAD9/wkAAAAFAAEAAAD8/wkAAAAFAAEAAAD9/wgAAAAFAAEAAAD+/wgAAAAFAAEAAAD//wgAAAAFAAEAAAAAAAgAAAAFAAEAAAABAAgAAAAFAAEAAAACAAgAAAAFAAEAAAADAAgAAAAFAAEAAAAEAAgAAAAFAAEAAAAFAAgAAAAFAAEAAAAGAAgAAAAFAAEAAAD8/wgAAAAFAAEAAAD7/wgAAAAFAAEAAAD6/wgAAAAFAAEAAAD5/wkAAAAFAAEAAAD5/wgAAAAFAAEAAAD4/wkAAAAFAAEAAAD4/wgAAAAFAAEAAAD3/wkAAAAFAAEAAAD3/wgAAAAFAAEAAAD2/wgAAAAFAAEAAAD1/wgAAAAFAAEAAAD1/wkAAAAFAAEAAAD2/wkAAAAFAAEAAAD6/wkAAAAFAAEAAAD7/wkAAAAFAAEAAAD1//b/AAAFAAEAAAD2//b/AAAFAAEAAAD3//b/AAAFAAEAAAD4//b/AAAFAAEAAAD5//b/AAAFAAEAAAD6//b/AAAFAAEAAAD7//b/AAAFAAEAAAD8//b/AAAFAAEAAAD9//b/AAAFAAEAAAD+//b/AAAFAAEAAAD///b/AAAFAAEAAAAAAPb/AAAFAAEAAAABAPb/AAAFAAEAAAACAPb/AAAFAAEAAAADAPb/AAAFAAEAAAAEAPb/AAAFAAEAAAAFAPb/AAAFAAEAAAAGAPb/AAAFAAEAAAAHAPb/AAAFAAEAAAAIAPb/AAAFAAEAAAAJAPb/AAAFAAEAAAAKAPb/AAAFAAEAAAD1//X/AAAFAAEAAAD2//X/AAAFAAEAAAD3//X/AAAFAAEAAAD4//X/AAAFAAEAAAD5//X/AAAFAAEAAAD6//X/AAAFAAEAAAD7//X/AAAFAAEAAAD8//X/AAAFAAEAAAD9//X/AAAFAAEAAAD+//X/AAAFAAEAAAD///X/AAAFAAEAAAAAAPX/AAAFAAEAAAABAPX/AAAFAAEAAAACAPX/AAAFAAEAAAADAPX/AAAFAAEAAAAEAPX/AAAFAAEAAAAFAPX/AAAFAAEAAAAGAPX/AAAFAAEAAAAHAPX/AAAFAAEAAAAIAPX/AAAFAAEAAAAJAPX/AAAFAAEAAAA=")
 tile_set = SubResource("TileSet_082uc")
+
+[node name="HighlightMarker" type="Node2D" parent="TileMapLayer" unique_id=103060601]
+position = Vector2(0, -35)
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayer/HighlightMarker" unique_id=1824967999]
+modulate = Color(0, 0, 0, 0.43529412)
+texture = ExtResource("12_fwcvl")
 
 [connection signal="pressed" from="CanvasLayer/GameUI/TabButtonContainer/ProductionButton" to="CanvasLayer/GameUI" method="_on_production_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/TabButtonContainer/BuildingsButton" to="CanvasLayer/GameUI" method="_on_buildings_button_pressed"]
