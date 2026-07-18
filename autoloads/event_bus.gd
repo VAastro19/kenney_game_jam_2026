@@ -2,5 +2,5 @@
 extends Node
 
 signal OnPlaceBuilding(type: GameManager.BuildingType)
-signal OnUpdateCoin(amount: int, type: GameManager.CoinType)
+signal OnUpdateCoin(amount: float, type: GameManager.CoinType)
 signal OnUpdateCoinCap

@@ -4,11 +4,16 @@ extends Node
 enum CoinType {BLUE, GREEN, YELLOW, RED}
 enum BuildingType {NONE, WAREHOUSE, WINDMILL, LUMBER, BLACKSMITH, CASTLE, CAMP}
 
-@export var blue_amount: int = 0
-@export var green_amount: int = 0
-@export var yellow_amount: int = 0
-@export var red_amount: int = 0
-@export var coin_cap: int = 1000
+@export var blue_amount: float = 0
+@export var green_amount: float = 0
+@export var yellow_amount: float = 0
+@export var red_amount: float = 0
+@export var coin_cap: float = 1000
+
+var blue_production: int = 0
+var green_production: int = 0
+var yellow_production: int = 0
+var red_production: int = 0
 
 var in_build_mode: bool = false
 var selected_building: BuildingType = BuildingType.NONE

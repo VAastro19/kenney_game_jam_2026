@@ -37,14 +37,17 @@ func _ready() -> void:
 	texture_focused = texture_normal
 
 func _on_mouse_entered() -> void:
-	scale.x = lerpf(scale.x, big_scale, 1.0)
-	scale.y = lerpf(scale.y, big_scale, 1.0)
+	if parent.is_unlocked:
+		scale.x = lerpf(scale.x, big_scale, 1.0)
+		scale.y = lerpf(scale.y, big_scale, 1.0)
 
 func _on_mouse_exited() -> void:
-	scale.x = lerpf(scale.x, normal_scale, 1.0)
-	scale.y = lerpf(scale.y, normal_scale, 1.0)
+	if parent.is_unlocked:
+		scale.x = lerpf(scale.x, normal_scale, 1.0)
+		scale.y = lerpf(scale.y, normal_scale, 1.0)
 
 func _on_pressed() -> void:
-	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(self, "scale", Vector2(small_scale, small_scale), 0.05)
-	tween.tween_property(self, "scale", Vector2(big_scale, big_scale), 0.05)
+	if parent.is_unlocked:
+		var tween: Tween = get_tree().create_tween()
+		tween.tween_property(self, "scale", Vector2(small_scale, small_scale), 0.05)
+		tween.tween_property(self, "scale", Vector2(big_scale, big_scale), 0.05)

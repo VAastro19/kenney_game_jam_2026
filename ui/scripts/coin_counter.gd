@@ -5,7 +5,7 @@ class_name CoinCounter extends Control
 @onready var amount_label: Label = $HBoxContainer/CoinCounterLabel
 
 @export var coin_type: GameManager.CoinType
-var cur_amount: int = 0
+var cur_amount: float = 0
 
 func _ready() -> void:
 	EventBus.OnUpdateCoin.connect(_on_coin_update)
@@ -27,7 +27,7 @@ func _ready() -> void:
 			coin_texture.texture = load("uid://dum12h5kdlrj4")
 			cur_amount = GameManager.red_amount
 
-func _on_coin_update(amount: int, type: GameManager.CoinType) -> void:
+func _on_coin_update(amount: float, type: GameManager.CoinType) -> void:
 	if type == coin_type:
 		if cur_amount + amount <= GameManager.coin_cap:
 			cur_amount += amount

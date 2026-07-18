@@ -322,10 +322,12 @@ alignment = 1
 [node name="WarehouseButton" parent="CanvasLayer/GameUI/BuldingsPanel/HBoxContainer" unique_id=1595533144 instance=ExtResource("6_67ri8")]
 layout_mode = 2
 building_type = 1
+is_unlocked = true
 
 [node name="WindmillButton" parent="CanvasLayer/GameUI/BuldingsPanel/HBoxContainer" unique_id=405535717 instance=ExtResource("6_67ri8")]
 layout_mode = 2
 building_type = 2
+is_unlocked = true
 
 [node name="LumberButton" parent="CanvasLayer/GameUI/BuldingsPanel/HBoxContainer" unique_id=1295113019 instance=ExtResource("6_67ri8")]
 layout_mode = 2
