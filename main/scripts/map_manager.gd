@@ -40,6 +40,83 @@ func _try_set_hex_state(building_type: GameManager.BuildingType) -> void:
 	
 	if hex_info[coords].is_used or GameManager.in_build_mode == false:
 		return
+	if not _check_building_cost(building_type):
+		return
 	else:
 		hex_map.set_cell(coords, 0, hex_atlas_coords[building_type])
 		hex_info[coords].is_used = true
+		hex_info[coords].hex_type = building_type
+		_add_building(building_type)
+
+func _check_building_cost(building_type: GameManager.BuildingType) -> bool:
+	match building_type:
+		GameManager.BuildingType.WINDMILL:
+			if GameManager.windmill_cost <= GameManager.blue_amount:
+				GameManager.blue_amount -= GameManager.windmill_cost
+				return true
+			else:
+				print("Not enough blue coins!")
+				print(GameManager.blue_amount)
+				print(GameManager.windmill_cost)
+				return false
+
+		GameManager.BuildingType.LUMBER:
+			if GameManager.lumber_cost <= GameManager.blue_amount:
+				GameManager.blue_amount -= GameManager.lumber_cost
+				return true
+			else:
+				print("Not enough blue coins!")
+				return false
+
+		GameManager.BuildingType.BLACKSMITH:
+			if GameManager.blacksmith_cost <= GameManager.green_amount:
+				GameManager.green_amount -= GameManager.blacksmith_cost
+				return true
+			else:
+				print("Not enough green coins!")
+				return false
+
+		GameManager.BuildingType.CASTLE:
+			if GameManager.castle_cost <= GameManager.yellow_amount:
+				GameManager.yellow_amount -= GameManager.castle_cost
+				return true
+			else:
+				print("Not enough yellow coins!")
+				return false
+
+		GameManager.BuildingType.WAREHOUSE:
+			if GameManager.warehouse_cost <= GameManager.green_amount:
+				GameManager.green_amount -= GameManager.warehouse_cost
+				return true
+			else:
+				print("Not enough green coins!")
+				return false
+		
+		_:
+			print("Unknown building")
+			return false
+
+func _add_building(building_type: GameManager.BuildingType) -> void:
+	match building_type:
+		GameManager.BuildingType.WINDMILL:
+			GameManager.blue_generators += 1
+
+		GameManager.BuildingType.LUMBER:
+			GameManager.green_generators += 1
+
+		GameManager.BuildingType.BLACKSMITH:
+			GameManager.yellow_generators += 1
+
+		GameManager.BuildingType.CASTLE:
+			GameManager.red_generators += 1
+
+		GameManager.BuildingType.WAREHOUSE:
+			GameManager.warehouses += 1
+			GameManager.update_coin_cap()
+
+		_:
+			pass
+
+func _on_timer_timeout() -> void:
+	print("TICK!")
+	EventBus.OnTick.emit()

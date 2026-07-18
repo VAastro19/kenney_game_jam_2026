@@ -1,13 +1,114 @@
 [gd_scene format=3 uid="uid://jlbgrqoqh5fq"]
 
 [ext_resource type="Script" uid="uid://t4mgvl48fc6e" path="res://ui/scripts/main_menu.gd" id="1_t7e0r"]
+[ext_resource type="Texture2D" uid="uid://r2mqqva0hd3e" path="res://assets/graphics/backgrounds/menu_background.jpeg" id="2_0dkrt"]
+[ext_resource type="Texture2D" uid="uid://c2pgc2wuco2a1" path="res://assets/graphics/coins/blue_coin.png" id="3_wk0pr"]
+[ext_resource type="Texture2D" uid="uid://c0cxtfjfkdxag" path="res://assets/graphics/coins/green_coin.png" id="4_ei257"]
+[ext_resource type="Texture2D" uid="uid://btpjfu7rn478t" path="res://assets/graphics/coins/yellow_coin.png" id="5_p8ri8"]
+[ext_resource type="Texture2D" uid="uid://dum12h5kdlrj4" path="res://assets/graphics/coins/red_coin.png" id="6_ubpvv"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_082uc"]
-font_size = 60
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 4
-shadow_color = Color(0, 0, 0, 0.50980395)
+[sub_resource type="Curve" id="Curve_ei257"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.516854), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ei257"]
+curve = SubResource("Curve_ei257")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rmr83"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+angle_min = -49.99999
+angle_max = 50.00001
+initial_velocity_min = -250.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_ei257")
+
+[sub_resource type="Animation" id="Animation_0dkrt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -73)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameNameLabel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameNameLabel:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wk0pr"]
+resource_name = "float"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -73), Vector2(-158, -73)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameNameLabel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameNameLabel:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.08726646, 0.0, -0.08726646, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmr83"]
+_data = {
+&"RESET": SubResource("Animation_0dkrt"),
+&"float": SubResource("Animation_wk0pr")
+}
 
 [node name="MainMenu" type="Control" unique_id=314100818]
 layout_mode = 3
@@ -18,29 +119,67 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t7e0r")
 
-[node name="Background" type="Panel" parent="." unique_id=1034933997]
+[node name="Background" type="TextureRect" parent="." unique_id=2019478680]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -73.0
+offset_right = 158.0
+offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_0dkrt")
+expand_mode = 2
 
-[node name="GameNameLabel" type="Label" parent="." unique_id=1699858376]
+[node name="BlueGPUParticles" type="GPUParticles2D" parent="." unique_id=1993451356]
+position = Vector2(578, 0)
+amount = 5
+texture = ExtResource("3_wk0pr")
+lifetime = 5.0
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_rmr83")
+
+[node name="GreenGPUParticles" type="GPUParticles2D" parent="." unique_id=1364848769]
+position = Vector2(578, 0)
+amount = 5
+texture = ExtResource("4_ei257")
+lifetime = 5.0
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_rmr83")
+
+[node name="YellowGPUParticles" type="GPUParticles2D" parent="." unique_id=717412327]
+position = Vector2(578, 0)
+amount = 5
+texture = ExtResource("5_p8ri8")
+lifetime = 5.0
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_rmr83")
+
+[node name="RedGPUParticles" type="GPUParticles2D" parent="." unique_id=1292428816]
+position = Vector2(578, 0)
+amount = 5
+texture = ExtResource("6_ubpvv")
+lifetime = 5.0
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_rmr83")
+
+[node name="GameNameLabel" type="RichTextLabel" parent="." unique_id=1950937503]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -119.0
-offset_top = -182.5
-offset_right = 119.0
-offset_bottom = -137.5
+offset_left = -265.5
+offset_top = -217.0
+offset_right = 265.5
+offset_bottom = -127.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Game Name"
-label_settings = SubResource("LabelSettings_082uc")
+pivot_offset_ratio = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[font_size=120][outline_size=4][color=gold]Coins [color=white]& [color=gray]Cities"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -51,10 +190,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = -61.0
-offset_right = 88.0
-offset_bottom = 121.0
+offset_left = -107.0
+offset_top = -84.0
+offset_right = 107.0
+offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -65,25 +204,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -79.0
-offset_right = 75.0
-offset_bottom = 79.0
+offset_left = -89.0
+offset_top = -96.0
+offset_right = 89.0
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
 [node name="PlayButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=1701517877]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=1755251176]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "Settings
 "
 
@@ -91,7 +231,7 @@ text = "Settings
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "Quit"
 
 [node name="SettingsPanel" type="Panel" parent="." unique_id=991085078]
@@ -137,6 +277,10 @@ layout_mode = 2
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 32
 text = "Back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1562796570]
+libraries/ = SubResource("AnimationLibrary_rmr83")
+autoplay = &"float"
 
 [connection signal="pressed" from="ButtonPanel/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ButtonPanel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
