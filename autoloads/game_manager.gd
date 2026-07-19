@@ -2,10 +2,10 @@
 extends Node
 
 enum CoinType {BLUE, GREEN, YELLOW, RED}
-enum BuildingType {NONE, WAREHOUSE, WINDMILL, LUMBER, BLACKSMITH, CASTLE, CAMP}
+enum BuildingType {NONE, WAREHOUSE, WINDMILL, LUMBER, BLACKSMITH, CASTLE, CAMP, MONUMENT}
 
 @export var coin_cap: float = 1000
-@export var blue_amount: float = 100
+@export var blue_amount: float = 0
 @export var green_amount: float = 0
 @export var yellow_amount: float = 0
 @export var red_amount: float = 0
@@ -28,19 +28,19 @@ var warehouses: int = 0
 
 var warehouse_cost: float:
 	get:
-		return floor(10 * (warehouses ** 4 + 5.0))
+		return floor(10 * (warehouses ** 2 + 5.0))
 var windmill_cost: float:
 	get:
-		return floor(10 * (blue_generators ** 4 + 5.0))
+		return floor(10 * (blue_generators ** 2 + 5.0))
 var lumber_cost: float:
 	get:
-		return floor(10 * (green_generators ** 4 + 10.0))
+		return floor(10 * (green_generators ** 2 + 10.0))
 var blacksmith_cost: float:
 	get:
-		return floor(10 * (yellow_generators ** 4 + 10.0))
+		return floor(10 * (yellow_generators ** 2 + 10.0))
 var castle_cost: float:
 	get:
-		return floor(10 * (red_generators ** 4 + 10.0))
+		return floor(10 * (red_generators ** 2 + 10.0))
 
 var blue_production: float:
 	get:
@@ -93,9 +93,6 @@ func _process(_delta: float) -> void:
 	if in_build_mode:
 		if Input.is_action_just_pressed("place_building"):
 			EventBus.OnPlaceBuilding.emit(selected_building)
-
-	if Input.is_action_just_pressed("open_menu"):
-		print("open menu")
 
 func _on_tick() -> void:
 	if blue_amount + blue_production <= coin_cap:

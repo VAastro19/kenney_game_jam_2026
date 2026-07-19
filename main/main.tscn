@@ -6,12 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://c7dbpiwcukn06" path="res://ui/coin_counter.tscn" id="2_0i4oc"]
 [ext_resource type="PackedScene" uid="uid://b25dp2omijelv" path="res://ui/tab_button.tscn" id="2_c651c"]
 [ext_resource type="PackedScene" uid="uid://bqndwuq87n1cw" path="res://ui/coin_button.tscn" id="3_grrlh"]
+[ext_resource type="Texture2D" uid="uid://brqvh3wfubu3h" path="res://assets/graphics/ui/panel_brown_damaged.png" id="5_73k8k"]
 [ext_resource type="PackedScene" uid="uid://ds8xh1k65hfrg" path="res://ui/building_button.tscn" id="6_67ri8"]
 [ext_resource type="Texture2D" uid="uid://5gi80ndv4pcn" path="res://assets/graphics/inputs/mouse_right.png" id="7_fwcvl"]
 [ext_resource type="Script" uid="uid://dexxsmrckgk2k" path="res://main/scripts/map_manager.gd" id="7_grrlh"]
+[ext_resource type="PackedScene" uid="uid://dvoo4rdf2yv21" path="res://ui/upgrade_button.tscn" id="7_na0o7"]
 [ext_resource type="Texture2D" uid="uid://b2ab7srnj13lv" path="res://assets/graphics/inputs/mouse_left.png" id="8_na0o7"]
 [ext_resource type="Texture2D" uid="uid://b7k6itilypcvf" path="res://assets/graphics/inputs/keyboard_escape.png" id="9_73k8k"]
+[ext_resource type="Script" uid="uid://dgwkwoq7sxgow" path="res://ui/scripts/settings_panel.gd" id="12_5xyti"]
 [ext_resource type="Texture2D" uid="uid://dhjidjemprqtg" path="res://assets/graphics/tiles/grass1.png" id="12_fwcvl"]
+[ext_resource type="AudioStream" uid="uid://k44maxdvn725" path="res://assets/audio/build.ogg" id="16_n3o0a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q0ro8"]
 font_size = 32
@@ -33,6 +37,14 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.5254902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3o0a"]
+font_size = 32
+font_color = Color(0.3403393, 0.34033933, 0.3403393, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6431373)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pjrb6"]
 texture = ExtResource("1_53q0u")
@@ -205,7 +217,7 @@ script = ExtResource("7_grrlh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=387036909]
 
-[node name="GameUI" type="Control" parent="CanvasLayer" unique_id=1980298311 node_paths=PackedStringArray("production_panel", "buildings_panel", "upgrades_panel", "l_click_label", "l_click_icon", "r_click_label", "r_click_icon")]
+[node name="GameUI" type="Control" parent="CanvasLayer" unique_id=1980298311 node_paths=PackedStringArray("production_panel", "buildings_panel", "unlocks_panel", "upgrades_panel", "l_click_label", "l_click_icon", "r_click_label", "r_click_icon")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -215,18 +227,37 @@ grow_vertical = 2
 script = ExtResource("1_xwkvk")
 production_panel = NodePath("ProductionPanel")
 buildings_panel = NodePath("BuldingsPanel")
+unlocks_panel = NodePath("UnlocksPanel")
 upgrades_panel = NodePath("UpgradesPanel")
 l_click_label = NodePath("InputHints/GridContainer/LeftClickLabel")
 l_click_icon = NodePath("InputHints/GridContainer/LeftClickIcon")
 r_click_label = NodePath("InputHints/GridContainer/RightClickLabel")
 r_click_icon = NodePath("InputHints/GridContainer/RightClickIcon")
 
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/GameUI" unique_id=71622415]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_73k8k")
+draw_center = false
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="CoinCounterContainer" type="VBoxContainer" parent="CanvasLayer/GameUI" unique_id=1680984725]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.2
 anchor_bottom = 0.36
-offset_right = -0.40000916
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 9.599991
+offset_bottom = 10.0
 
 [node name="BlueCoinCounter" parent="CanvasLayer/GameUI/CoinCounterContainer" unique_id=1105764973 instance=ExtResource("2_0i4oc")]
 layout_mode = 2
@@ -246,9 +277,12 @@ coin_type = 3
 [node name="TabButtonContainer" type="HBoxContainer" parent="CanvasLayer/GameUI" unique_id=341488247]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.7
-anchor_right = 0.3
-anchor_bottom = 0.75
+anchor_top = 0.67300004
+anchor_right = 0.499
+anchor_bottom = 0.75000006
+offset_top = -12.104034
+offset_right = 0.15197754
+offset_bottom = -12.0000305
 theme_override_constants/separation = 5
 
 [node name="ProductionButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=1094330538 instance=ExtResource("2_c651c")]
@@ -261,7 +295,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Buildings"
 
-[node name="UpgradesButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=69960096 instance=ExtResource("2_c651c")]
+[node name="UnlocksButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=69960096 instance=ExtResource("2_c651c")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Unlocks"
+
+[node name="UpgradesButton" parent="CanvasLayer/GameUI/TabButtonContainer" unique_id=1598545552 instance=ExtResource("2_c651c")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Upgrades"
@@ -269,11 +308,26 @@ text = "Upgrades"
 [node name="ProductionPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=1257030725]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.75
+anchor_top = 0.731
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.3119812
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/GameUI/ProductionPanel" unique_id=1353054478]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+texture = ExtResource("5_73k8k")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/ProductionPanel" unique_id=1747855191]
 layout_mode = 1
@@ -303,11 +357,26 @@ coin_type = 3
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.75
+anchor_top = 0.731
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.3119812
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/GameUI/BuldingsPanel" unique_id=1615989940]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+texture = ExtResource("5_73k8k")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/BuldingsPanel" unique_id=1487489757]
 layout_mode = 1
@@ -341,26 +410,137 @@ building_type = 4
 layout_mode = 2
 building_type = 5
 
-[node name="UpgradesPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=432032579]
+[node name="UnlocksPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=432032579]
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.75
+anchor_top = 0.731
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 0.3119812
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/GameUI/UpgradesPanel" unique_id=1931084271]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/GameUI/UnlocksPanel" unique_id=774987048]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "UPGRADES"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("5_73k8k")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/UnlocksPanel" unique_id=1454421081]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.1444092e-05
+offset_bottom = -1.5258789e-05
+theme_override_constants/separation = 190
+alignment = 1
+
+[node name="LumberUnlockButton" parent="CanvasLayer/GameUI/UnlocksPanel/HBoxContainer" unique_id=2102159531 instance=ExtResource("7_na0o7")]
+layout_mode = 2
+
+[node name="BlacksmithUnlockButton" parent="CanvasLayer/GameUI/UnlocksPanel/HBoxContainer" unique_id=1951994784 instance=ExtResource("7_na0o7")]
+layout_mode = 2
+upgrade = 1
+
+[node name="CastleUnlockButton" parent="CanvasLayer/GameUI/UnlocksPanel/HBoxContainer" unique_id=531375816 instance=ExtResource("7_na0o7")]
+layout_mode = 2
+upgrade = 2
+
+[node name="GreenUnlockButton" parent="CanvasLayer/GameUI/UnlocksPanel/HBoxContainer" unique_id=1650618260 instance=ExtResource("7_na0o7")]
+layout_mode = 2
+upgrade = 3
+
+[node name="YellowUnlockButton" parent="CanvasLayer/GameUI/UnlocksPanel/HBoxContainer" unique_id=863975487 instance=ExtResource("7_na0o7")]
+layout_mode = 2
+upgrade = 4
+
+[node name="RedUnlockButton" parent="CanvasLayer/GameUI/UnlocksPanel/HBoxContainer" unique_id=350524095 instance=ExtResource("7_na0o7")]
+layout_mode = 2
+upgrade = 5
+
+[node name="UpgradesPanel" type="Panel" parent="CanvasLayer/GameUI" unique_id=2005597222]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.731
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.3119812
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/GameUI/UpgradesPanel" unique_id=1416066306]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_73k8k")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/UpgradesPanel" unique_id=1005348469]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.1444092e-05
+offset_bottom = -1.5258789e-05
+theme_override_constants/separation = 190
+alignment = 1
+
+[node name="ClickValueUpgradeButton" parent="CanvasLayer/GameUI/UpgradesPanel/HBoxContainer" unique_id=1917757412 instance=ExtResource("7_na0o7")]
+visible = false
+layout_mode = 2
+upgrade = 6
+upgrade_type = 1
+buy_limit = 10
+
+[node name="WindmillUpgradeButton" parent="CanvasLayer/GameUI/UpgradesPanel/HBoxContainer" unique_id=1252776955 instance=ExtResource("7_na0o7")]
+visible = false
+layout_mode = 2
+upgrade = 7
+upgrade_type = 1
+buy_limit = 10
+
+[node name="LumberUpgradeButton" parent="CanvasLayer/GameUI/UpgradesPanel/HBoxContainer" unique_id=113295132 instance=ExtResource("7_na0o7")]
+visible = false
+layout_mode = 2
+upgrade = 8
+upgrade_type = 1
+buy_limit = 10
+
+[node name="BlacksmithUpgradeButton" parent="CanvasLayer/GameUI/UpgradesPanel/HBoxContainer" unique_id=593499117 instance=ExtResource("7_na0o7")]
+visible = false
+layout_mode = 2
+upgrade = 9
+upgrade_type = 1
+buy_limit = 10
+
+[node name="CastleUpgradeButton" parent="CanvasLayer/GameUI/UpgradesPanel/HBoxContainer" unique_id=2111510963 instance=ExtResource("7_na0o7")]
+visible = false
+layout_mode = 2
+upgrade = 10
+upgrade_type = 1
+buy_limit = 10
+
+[node name="MonumentUpgradeButton" parent="CanvasLayer/GameUI/UpgradesPanel/HBoxContainer" unique_id=1521707949 instance=ExtResource("7_na0o7")]
+layout_mode = 2
+upgrade = 11
 
 [node name="InputHints" type="Control" parent="CanvasLayer/GameUI" unique_id=1470617035]
 layout_mode = 1
@@ -423,6 +603,166 @@ offset_transform_enabled = true
 offset_transform_scale = Vector2(0.7, 0.7)
 texture = ExtResource("7_fwcvl")
 
+[node name="PauseMenu" type="Control" parent="CanvasLayer/GameUI" unique_id=1482315597]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/GameUI/PauseMenu" unique_id=1342437560]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsPanel" type="TextureRect" parent="CanvasLayer/GameUI/PauseMenu" unique_id=1613414009 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -132.0
+offset_right = 107.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_5xyti")
+master_slider = NodePath("VBoxContainer/MasterSlider")
+music_slider = NodePath("VBoxContainer/MusicSlider")
+sfx_slider = NodePath("VBoxContainer/SFXSlider")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel" unique_id=906462358]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_73k8k")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel" unique_id=1695965735]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -116.0
+offset_right = 89.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FullscreenButton" type="CheckBox" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer" unique_id=97078698]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.26293287, 0.26293227, 0.26293242, 1)
+theme_override_colors/font_pressed_color = Color(0.27022192, 0.27022192, 0.2702219, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+button_pressed = true
+text = "Fullscreen"
+flat = true
+alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer/FullscreenButton" unique_id=1289865373]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_73k8k")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MasterLabel" type="Label" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer" unique_id=910229976]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_n3o0a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer" unique_id=76077372]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="MusicLabel" type="Label" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer" unique_id=515540786]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_n3o0a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer" unique_id=1610819631]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="SFXLabel" type="Label" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer" unique_id=1627071992]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "SFX Volume"
+label_settings = SubResource("LabelSettings_n3o0a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer" unique_id=270152364]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer" unique_id=736415887]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2592936, 0.25929374, 0.2592937, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer/QuitButton" unique_id=668526669]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_73k8k")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1031307378]
 zoom = Vector2(0.8, 0.8)
 limit_enabled = false
@@ -448,7 +788,17 @@ texture = ExtResource("12_fwcvl")
 [node name="Timer" type="Timer" parent="." unique_id=1040012877]
 autostart = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1409138122]
+stream = ExtResource("16_n3o0a")
+bus = &"SFX"
+
 [connection signal="pressed" from="CanvasLayer/GameUI/TabButtonContainer/ProductionButton" to="CanvasLayer/GameUI" method="_on_production_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/TabButtonContainer/BuildingsButton" to="CanvasLayer/GameUI" method="_on_buildings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/TabButtonContainer/UnlocksButton" to="CanvasLayer/GameUI" method="_on_unlocks_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/TabButtonContainer/UpgradesButton" to="CanvasLayer/GameUI" method="_on_upgrades_button_pressed"]
+[connection signal="toggled" from="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer/FullscreenButton" to="CanvasLayer/GameUI/PauseMenu/SettingsPanel" method="_on_fullscreen_toggled"]
+[connection signal="value_changed" from="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer/MasterSlider" to="CanvasLayer/GameUI/PauseMenu/SettingsPanel" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer/MusicSlider" to="CanvasLayer/GameUI/PauseMenu/SettingsPanel" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer/SFXSlider" to="CanvasLayer/GameUI/PauseMenu/SettingsPanel" method="_on_sfx_volume_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/PauseMenu/SettingsPanel/VBoxContainer/QuitButton" to="CanvasLayer/GameUI/PauseMenu/SettingsPanel" method="_on_quit_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

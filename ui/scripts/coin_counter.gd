@@ -26,13 +26,13 @@ func _on_coin_update(type: GameManager.CoinType) -> void:
 	if type == coin_type:
 		match coin_type:
 			GameManager.CoinType.BLUE:
-				amount_label.text = str(GameManager.blue_amount) + " / " + str(GameManager.coin_cap)
+				amount_label.text = str(int(GameManager.blue_amount)) + " / " + str(int(GameManager.coin_cap))
 
 			GameManager.CoinType.GREEN:
-				amount_label.text = str(GameManager.green_amount) + " / " + str(GameManager.coin_cap)
+				amount_label.text = str(int(GameManager.green_amount)) + " / " + str(int(GameManager.coin_cap))
 
 			GameManager.CoinType.YELLOW:
-				amount_label.text = str(GameManager.yellow_amount) + " / " + str(GameManager.coin_cap)
+				amount_label.text = str(int(GameManager.yellow_amount)) + " / " + str(int(GameManager.coin_cap))
 
 			GameManager.CoinType.RED:
-				amount_label.text = str(GameManager.red_amount) + " / " + str(GameManager.coin_cap)
+				amount_label.text = str(int(GameManager.red_amount)) + " / " + str(int(GameManager.coin_cap))

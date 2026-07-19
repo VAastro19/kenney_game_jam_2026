@@ -15,6 +15,7 @@ class_name CoinButton extends Control
 			modulate = Color.WHITE
 
 func _ready() -> void:
+	EventBus.OnUnlockGenerator.connect(_on_unlock_generator)
 	button.pressed.connect(_on_button_pressed)
 	
 	match coin_type:
@@ -30,14 +31,18 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	match coin_type:
 		GameManager.CoinType.BLUE:
-			label.text = str(GameManager.blue_production) + " / s"
+			label.text = str(int(GameManager.blue_production)) + " / s"
 		GameManager.CoinType.GREEN:
-			label.text = str(GameManager.green_production) + " / s"
+			label.text = str(int(GameManager.green_production)) + " / s"
 		GameManager.CoinType.YELLOW:
-			label.text = str(GameManager.yellow_production) + " / s"
+			label.text = str(int(GameManager.yellow_production)) + " / s"
 		GameManager.CoinType.RED:
-			label.text = str(GameManager.red_production) + " / s"
+			label.text = str(int(GameManager.red_production)) + " / s"
 
 func _on_button_pressed() -> void:
 	if is_unlocked:
 		EventBus.OnClick.emit(click_value, coin_type)
+
+func _on_unlock_generator(type: GameManager.CoinType) -> void:
+	if type == coin_type:
+		is_unlocked = true

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://4kkjylalam82" path="res://ui/scripts/building_button.gd" id="1_cwxj2"]
 [ext_resource type="Texture2D" uid="uid://dk6ilksd4po4t" path="res://assets/graphics/tiles/medieval_warehouse.png" id="1_uhcvr"]
 [ext_resource type="Script" uid="uid://bxev2bkyiepmv" path="res://ui/scripts/building_button_visuals.gd" id="3_afoqw"]
+[ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://main/scripts/button_audio.gd" id="4_hptul"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_082uc"]
 font_size = 32
@@ -27,15 +28,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -75.0
-offset_right = 90.0
-offset_bottom = 65.0
+offset_left = -60.0
+offset_top = -105.0
+offset_right = 60.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 texture_normal = ExtResource("1_uhcvr")
 script = ExtResource("3_afoqw")
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="Button" unique_id=1860790652]
+bus = &"SFX"
+script = ExtResource("4_hptul")
 
 [node name="Name" type="Label" parent="." unique_id=1095259293]
 layout_mode = 1

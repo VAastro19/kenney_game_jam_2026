@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c0cxtfjfkdxag" path="res://assets/graphics/coins/green_coin.png" id="4_ei257"]
 [ext_resource type="Texture2D" uid="uid://btpjfu7rn478t" path="res://assets/graphics/coins/yellow_coin.png" id="5_p8ri8"]
 [ext_resource type="Texture2D" uid="uid://dum12h5kdlrj4" path="res://assets/graphics/coins/red_coin.png" id="6_ubpvv"]
+[ext_resource type="Texture2D" uid="uid://brqvh3wfubu3h" path="res://assets/graphics/ui/panel_brown_damaged.png" id="7_p8ri8"]
+[ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://main/scripts/button_audio.gd" id="8_arv2f"]
+[ext_resource type="Script" uid="uid://dgwkwoq7sxgow" path="res://ui/scripts/settings_panel.gd" id="8_ubpvv"]
 
 [sub_resource type="Curve" id="Curve_ei257"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.516854), 0.0, 0.0, 0, 0]
@@ -23,6 +26,14 @@ initial_velocity_min = -250.0
 initial_velocity_max = 250.0
 gravity = Vector3(0, 98, 0)
 scale_curve = SubResource("CurveTexture_ei257")
+
+[sub_resource type="LabelSettings" id="LabelSettings_082uc"]
+font_size = 32
+font_color = Color(0.3403393, 0.34033933, 0.3403393, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6431373)
 
 [sub_resource type="Animation" id="Animation_0dkrt"]
 length = 0.001
@@ -120,6 +131,7 @@ grow_vertical = 2
 script = ExtResource("1_t7e0r")
 
 [node name="Background" type="TextureRect" parent="." unique_id=2019478680]
+z_index = -5
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -183,7 +195,8 @@ text = "[font_size=120][outline_size=4][color=gold]Coins [color=white]& [color=g
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonPanel" type="Panel" parent="." unique_id=1606605171]
+[node name="ButtonPanel" type="TextureRect" parent="." unique_id=464838280]
+z_index = -3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -196,6 +209,20 @@ offset_right = 107.0
 offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ButtonPanel" unique_id=1286056758]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_p8ri8")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ButtonPanel" unique_id=914338243]
 layout_mode = 1
@@ -215,26 +242,86 @@ theme_override_constants/separation = 20
 [node name="PlayButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=1701517877]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.23753962, 0.23753893, 0.23753908, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 48
 text = "Play"
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ButtonPanel/VBoxContainer/PlayButton" unique_id=1243775671]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_p8ri8")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="ButtonPanel/VBoxContainer/PlayButton" unique_id=405374334]
+bus = &"SFX"
+script = ExtResource("8_arv2f")
 
 [node name="SettingsButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=1755251176]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.22670797, 0.22670728, 0.22670746, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 48
 text = "Settings
 "
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ButtonPanel/VBoxContainer/SettingsButton" unique_id=585134356]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_p8ri8")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="ButtonPanel/VBoxContainer/SettingsButton" unique_id=1708248751]
+bus = &"SFX"
+script = ExtResource("8_arv2f")
 
 [node name="QuitButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=388231713]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.21230528, 0.21230465, 0.2123048, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 48
 text = "Quit"
+flat = true
 
-[node name="SettingsPanel" type="Panel" parent="." unique_id=991085078]
+[node name="NinePatchRect" type="NinePatchRect" parent="ButtonPanel/VBoxContainer/QuitButton" unique_id=1746785359]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_p8ri8")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="ButtonPanel/VBoxContainer/QuitButton" unique_id=714534253]
+bus = &"SFX"
+script = ExtResource("8_arv2f")
+
+[node name="SettingsPanel" type="TextureRect" parent="." unique_id=1026920497 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -242,12 +329,30 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = -61.0
-offset_right = 88.0
-offset_bottom = 121.0
+offset_left = -107.0
+offset_top = -84.0
+offset_right = 107.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("8_ubpvv")
+master_slider = NodePath("VBoxContainer/MasterSlider")
+music_slider = NodePath("VBoxContainer/MusicSlider")
+sfx_slider = NodePath("VBoxContainer/SFXSlider")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SettingsPanel" unique_id=729150753]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_p8ri8")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel" unique_id=1884294796]
 layout_mode = 1
@@ -256,27 +361,130 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -79.0
-offset_right = 75.0
-offset_bottom = 79.0
+offset_left = -89.0
+offset_top = -96.0
+offset_right = 89.0
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FullscreenButton" type="CheckBox" parent="SettingsPanel/VBoxContainer" unique_id=1766261286]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.26293287, 0.26293227, 0.26293242, 1)
+theme_override_colors/font_pressed_color = Color(0.27022192, 0.27022192, 0.2702219, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 32
 button_pressed = true
 text = "Fullscreen"
+flat = true
 alignment = 1
 
-[node name="BackButton" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=1057214472]
-custom_minimum_size = Vector2(100, 30)
+[node name="NinePatchRect" type="NinePatchRect" parent="SettingsPanel/VBoxContainer/FullscreenButton" unique_id=1600714288]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_p8ri8")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="SettingsPanel/VBoxContainer/FullscreenButton" unique_id=840771424]
+bus = &"SFX"
+script = ExtResource("8_arv2f")
+
+[node name="MasterLabel" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=190574330]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_082uc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="SettingsPanel/VBoxContainer" unique_id=71855848]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="MusicLabel" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=211163960]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_082uc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="SettingsPanel/VBoxContainer" unique_id=962115104]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="SFXLabel" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=1957160780]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "SFX Volume"
+label_settings = SubResource("LabelSettings_082uc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="SettingsPanel/VBoxContainer" unique_id=1501675695]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="BackButton" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=1057214472]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2592936, 0.25929374, 0.2592937, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 32
 text = "Back"
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="SettingsPanel/VBoxContainer/BackButton" unique_id=2004353324]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_p8ri8")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="SettingsPanel/VBoxContainer/BackButton" unique_id=316184894]
+bus = &"SFX"
+script = ExtResource("8_arv2f")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=180917531]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_p8ri8")
+draw_center = false
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1562796570]
 libraries/ = SubResource("AnimationLibrary_rmr83")
@@ -285,5 +493,8 @@ autoplay = &"float"
 [connection signal="pressed" from="ButtonPanel/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ButtonPanel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ButtonPanel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="toggled" from="SettingsPanel/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="SettingsPanel/VBoxContainer/FullscreenButton" to="SettingsPanel" method="_on_fullscreen_toggled"]
+[connection signal="value_changed" from="SettingsPanel/VBoxContainer/MasterSlider" to="SettingsPanel" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/VBoxContainer/MusicSlider" to="SettingsPanel" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsPanel/VBoxContainer/SFXSlider" to="SettingsPanel" method="_on_sfx_volume_slider_value_changed"]
 [connection signal="pressed" from="SettingsPanel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

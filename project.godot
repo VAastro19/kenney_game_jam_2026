@@ -12,21 +12,26 @@ config_version=5
 
 config/name="KenneyGameJam2026"
 config/tags=PackedStringArray("gamejam", "smallgame")
-run/main_scene="uid://jlbgrqoqh5fq"
+run/main_scene="uid://cll0b7u5wnojk"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="uid://cveik27wkkgla"
+config/icon="res://assets/logos/game_icon.png"
+
+[audio]
+
+buses/default_bus_layout="uid://bdtsfddjve28k"
 
 [autoload]
 
 SceneLoader="*uid://dafi2mqd1wi21"
 GameManager="*uid://dowtit1cdvnmn"
 EventBus="*uid://ussy10rcbuyp"
-StringFormatter="*uid://bhfjxjl6lfd83"
+Music="*uid://b7tfttxu834st"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://d0yg6bltmsihc"
 
 [gui]
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://vgqbor0c7wvy" path="res://ui/scripts/coin_button.gd" id="1_0ht32"]
 [ext_resource type="Texture2D" uid="uid://c2pgc2wuco2a1" path="res://assets/graphics/coins/blue_coin.png" id="2_hhq2s"]
 [ext_resource type="Script" uid="uid://id7u14i2etdy" path="res://ui/scripts/coin_button_visuals.gd" id="2_s7sak"]
+[ext_resource type="Script" uid="uid://c6b1hv72xwjyd" path="res://main/scripts/coin_audio.gd" id="4_724x1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_082uc"]
 font_size = 48
@@ -25,9 +26,15 @@ script = ExtResource("1_0ht32")
 layout_mode = 0
 offset_right = 96.0
 offset_bottom = 92.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 texture_normal = ExtResource("2_hhq2s")
 stretch_mode = 0
 script = ExtResource("2_s7sak")
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="Button" unique_id=1781159110]
+volume_db = -15.0
+bus = &"SFX"
+script = ExtResource("4_724x1")
 
 [node name="Label" type="Label" parent="." unique_id=1118174786]
 layout_mode = 1

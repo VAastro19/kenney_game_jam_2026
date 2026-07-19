@@ -5,6 +5,7 @@ extends Camera2D
 @export_range(0, 2000) var camera_speed: float = 1000 ## Allowed movement speed range for the camera
 @export var edge_margin: float = 20 ## Defines how far from the edge camera starts panning
 @export var map_size: Vector2 = Vector2(500, 480)
+@export var allow_pan: bool = true
 
 # Set this camera as active
 func _ready() -> void:
@@ -12,8 +13,9 @@ func _ready() -> void:
 
 # Handle all the inputs
 func _process(delta: float) -> void:
-	_handle_keyboard_movement(delta) # Check for keyboard input camera movement
-	_handle_edge_movement(delta) # Check for mouse input camera movement
+	if allow_pan:
+		_handle_keyboard_movement(delta) # Check for keyboard input camera movement
+		_handle_edge_movement(delta) # Check for mouse input camera movement
 
 # Keyboard input logic
 func _handle_keyboard_movement(delta: float) -> void:

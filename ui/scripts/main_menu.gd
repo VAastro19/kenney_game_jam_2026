@@ -1,8 +1,8 @@
 # main_menu.gd
 extends Control
 
-@onready var button_panel: Panel = $ButtonPanel
-@onready var settings_panel: Panel = $SettingsPanel
+@onready var button_panel: TextureRect = $ButtonPanel
+@onready var settings_panel: TextureRect = $SettingsPanel
 
 func _on_play_button_pressed() -> void:
 	SceneLoader.load_scene("uid://bwvej8u5ivcdm")
@@ -17,9 +17,3 @@ func _on_quit_button_pressed() -> void:
 func _on_back_button_pressed() -> void:
 	settings_panel.visible = false
 	button_panel.visible = true
-
-func _on_fullscreen_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
