@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://dvoo4rdf2yv21"]
+
+[ext_resource type="Script" uid="uid://bxkw7f3lmitpv" path="res://ui/scripts/upgrade_button.gd" id="1_mfn4j"]
+[ext_resource type="Texture2D" uid="uid://b6md4j5iqompt" path="res://assets/graphics/tiles/medieval_windmill.png" id="2_wdp5w"]
+[ext_resource type="Script" uid="uid://diw5v4snjko6l" path="res://ui/scripts/upgrade_button_visuals.gd" id="3_qno1l"]
+[ext_resource type="Texture2D" uid="uid://c8b733my3oitb" path="res://assets/graphics/ui/unlock_icon.png" id="4_wdp5w"]
+[ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://main/scripts/button_audio.gd" id="5_qno1l"]
+[ext_resource type="AudioStream" uid="uid://bowebjn8s6oat" path="res://assets/audio/upgrade.ogg" id="6_feaxa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_feaxa"]
+font_size = 32
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.5411765)
+
+[node name="UpgradeButton" type="Control" unique_id=2102159531]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mfn4j")
+
+[node name="Button" type="TextureButton" parent="." unique_id=506180441]
+custom_minimum_size = Vector2(120, 140)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -105.0
+offset_right = 60.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_wdp5w")
+stretch_mode = 0
+script = ExtResource("3_qno1l")
+
+[node name="UpgradeTypeIcon" type="TextureRect" parent="Button" unique_id=1662005799]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 100.0
+offset_right = 120.0
+offset_bottom = 140.0
+texture = ExtResource("4_wdp5w")
+expand_mode = 2
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="Button" unique_id=1456189913]
+bus = &"SFX"
+script = ExtResource("5_qno1l")
+
+[node name="Name" type="Label" parent="." unique_id=418820186]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -1.0
+offset_right = 60.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Warehouse"
+label_settings = SubResource("LabelSettings_feaxa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="." unique_id=443269860]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = 22.0
+offset_right = 91.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=24][outline_size=2]Increases the coin cap"
+horizontal_alignment = 1
+
+[node name="Cost" type="RichTextLabel" parent="." unique_id=1599225357]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = 50.0
+offset_right = 85.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=28][outline_size=4]Cost: 100[img=18]res://assets/graphics/coins/blue_coin.png[/img]"
+horizontal_alignment = 1
+
+[node name="BoughtAudio" type="AudioStreamPlayer" parent="." unique_id=1423455501]
+stream = ExtResource("6_feaxa")
+bus = &"SFX"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
