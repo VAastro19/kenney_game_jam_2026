@@ -7,7 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://btpjfu7rn478t" path="res://assets/graphics/coins/yellow_coin.png" id="5_p8ri8"]
 [ext_resource type="Texture2D" uid="uid://dum12h5kdlrj4" path="res://assets/graphics/coins/red_coin.png" id="6_ubpvv"]
 [ext_resource type="Texture2D" uid="uid://brqvh3wfubu3h" path="res://assets/graphics/ui/panel_brown_damaged.png" id="7_p8ri8"]
-[ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://main/scripts/button_audio.gd" id="8_arv2f"]
+[ext_resource type="PackedScene" uid="uid://b25dp2omijelv" path="res://buttons/tab_button.tscn" id="8_5klac"]
+[ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://buttons/scripts/button_audio.gd" id="8_arv2f"]
 [ext_resource type="Script" uid="uid://dgwkwoq7sxgow" path="res://ui/scripts/settings_panel.gd" id="8_ubpvv"]
 
 [sub_resource type="Curve" id="Curve_ei257"]
@@ -145,6 +146,7 @@ texture = ExtResource("2_0dkrt")
 expand_mode = 2
 
 [node name="BlueGPUParticles" type="GPUParticles2D" parent="." unique_id=1993451356]
+z_index = -1
 position = Vector2(578, 0)
 amount = 5
 texture = ExtResource("3_wk0pr")
@@ -153,6 +155,7 @@ randomness = 0.2
 process_material = SubResource("ParticleProcessMaterial_rmr83")
 
 [node name="GreenGPUParticles" type="GPUParticles2D" parent="." unique_id=1364848769]
+z_index = -1
 position = Vector2(578, 0)
 amount = 5
 texture = ExtResource("4_ei257")
@@ -161,6 +164,7 @@ randomness = 0.2
 process_material = SubResource("ParticleProcessMaterial_rmr83")
 
 [node name="YellowGPUParticles" type="GPUParticles2D" parent="." unique_id=717412327]
+z_index = -1
 position = Vector2(578, 0)
 amount = 5
 texture = ExtResource("5_p8ri8")
@@ -169,6 +173,7 @@ randomness = 0.2
 process_material = SubResource("ParticleProcessMaterial_rmr83")
 
 [node name="RedGPUParticles" type="GPUParticles2D" parent="." unique_id=1292428816]
+z_index = -1
 position = Vector2(578, 0)
 amount = 5
 texture = ExtResource("6_ubpvv")
@@ -196,7 +201,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ButtonPanel" type="TextureRect" parent="." unique_id=464838280]
-z_index = -3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -219,10 +223,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_p8ri8")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ButtonPanel" unique_id=914338243]
 layout_mode = 1
@@ -239,87 +243,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="PlayButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=1701517877]
-custom_minimum_size = Vector2(100, 50)
+[node name="PlayButton" parent="ButtonPanel/VBoxContainer" unique_id=1094330538 instance=ExtResource("8_5klac")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.23753962, 0.23753893, 0.23753908, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 48
 text = "Play"
-flat = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="ButtonPanel/VBoxContainer/PlayButton" unique_id=1243775671]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_p8ri8")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="ButtonAudio" type="AudioStreamPlayer" parent="ButtonPanel/VBoxContainer/PlayButton" unique_id=405374334]
-bus = &"SFX"
-script = ExtResource("8_arv2f")
-
-[node name="SettingsButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=1755251176]
-custom_minimum_size = Vector2(100, 50)
+[node name="SettingsButton" parent="ButtonPanel/VBoxContainer" unique_id=873152652 instance=ExtResource("8_5klac")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.22670797, 0.22670728, 0.22670746, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 48
-text = "Settings
-"
-flat = true
+text = "Settings"
 
-[node name="NinePatchRect" type="NinePatchRect" parent="ButtonPanel/VBoxContainer/SettingsButton" unique_id=585134356]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_p8ri8")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="ButtonAudio" type="AudioStreamPlayer" parent="ButtonPanel/VBoxContainer/SettingsButton" unique_id=1708248751]
-bus = &"SFX"
-script = ExtResource("8_arv2f")
-
-[node name="QuitButton" type="Button" parent="ButtonPanel/VBoxContainer" unique_id=388231713]
-custom_minimum_size = Vector2(100, 50)
+[node name="QuitButton" parent="ButtonPanel/VBoxContainer" unique_id=1513780963 instance=ExtResource("8_5klac")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.21230528, 0.21230465, 0.2123048, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 48
 text = "Quit"
-flat = true
-
-[node name="NinePatchRect" type="NinePatchRect" parent="ButtonPanel/VBoxContainer/QuitButton" unique_id=1746785359]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_p8ri8")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="ButtonAudio" type="AudioStreamPlayer" parent="ButtonPanel/VBoxContainer/QuitButton" unique_id=714534253]
-bus = &"SFX"
-script = ExtResource("8_arv2f")
 
 [node name="SettingsPanel" type="TextureRect" parent="." unique_id=1026920497 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
 visible = false
@@ -349,10 +283,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_p8ri8")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel" unique_id=1884294796]
 layout_mode = 1
@@ -388,10 +322,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_p8ri8")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
 
 [node name="ButtonAudio" type="AudioStreamPlayer" parent="SettingsPanel/VBoxContainer/FullscreenButton" unique_id=840771424]
 bus = &"SFX"
@@ -445,32 +379,9 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 
-[node name="BackButton" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=1057214472]
-custom_minimum_size = Vector2(100, 50)
+[node name="BackButton" parent="SettingsPanel/VBoxContainer" unique_id=1633599336 instance=ExtResource("8_5klac")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.2592936, 0.25929374, 0.2592937, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 32
 text = "Back"
-flat = true
-
-[node name="NinePatchRect" type="NinePatchRect" parent="SettingsPanel/VBoxContainer/BackButton" unique_id=2004353324]
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_p8ri8")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="ButtonAudio" type="AudioStreamPlayer" parent="SettingsPanel/VBoxContainer/BackButton" unique_id=316184894]
-bus = &"SFX"
-script = ExtResource("8_arv2f")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=180917531]
 layout_mode = 1
