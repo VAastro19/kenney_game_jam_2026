@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="KenneyGameJam2026"
+config/name="Coins&Cities"
 config/tags=PackedStringArray("gamejam", "smallgame")
 run/main_scene="uid://cll0b7u5wnojk"
 config/features=PackedStringArray("4.7", "Mobile")
@@ -23,9 +23,10 @@ buses/default_bus_layout="uid://bdtsfddjve28k"
 [autoload]
 
 SceneLoader="*uid://dafi2mqd1wi21"
-GameManager="*uid://dowtit1cdvnmn"
 EventBus="*uid://ussy10rcbuyp"
 Music="*uid://b7tfttxu834st"
+EconomyManager="*uid://dowtit1cdvnmn"
+BuildManager="*uid://dkoha1plqpvwf"
 
 [display]
 

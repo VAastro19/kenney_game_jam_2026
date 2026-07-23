@@ -1,11 +1,12 @@
 # event_bus.gd
 extends Node
 
-signal OnPlaceBuilding(type: GameManager.BuildingType)
-signal OnUpdateCoin(type: GameManager.CoinType)
-signal OnClick(amount: float, type: GameManager.CoinType)
-signal OnTick
+signal OnClick(amount: float, type: EconomyManager.CoinType)
+signal OnUpdateCoin(type: EconomyManager.CoinType)
+signal OnUnlockGenerator(type: EconomyManager.CoinType)
 
-signal OnUnlockBuilding(type: GameManager.BuildingType)
-signal OnUnlockGenerator(type: GameManager.CoinType)
+signal OnPlaceBuilding(type: BuildManager.BuildingType)
+signal OnUnlockBuilding(type: BuildManager.BuildingType)
+
 signal OnMonumentBuilt
+signal OnTick

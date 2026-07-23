@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b25dp2omijelv"]
+
+[ext_resource type="Script" uid="uid://bxev2bkyiepmv" path="res://buttons/scripts/button_visuals.gd" id="1_igq73"]
+[ext_resource type="Texture2D" uid="uid://brqvh3wfubu3h" path="res://assets/graphics/ui/panel_brown_damaged.png" id="2_py8gu"]
+[ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://buttons/scripts/button_audio.gd" id="3_usxpr"]
+
+[node name="TabButton" type="Button" unique_id=1094330538]
+custom_minimum_size = Vector2(140, 50)
+offset_right = 140.0
+offset_bottom = 50.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.172833, 0.17283255, 0.17283264, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 40
+text = "Button"
+flat = true
+script = ExtResource("1_igq73")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1635171629]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_py8gu")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="." unique_id=1295380601]
+bus = &"SFX"
+script = ExtResource("3_usxpr")

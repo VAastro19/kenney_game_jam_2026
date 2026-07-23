@@ -29,7 +29,7 @@ texture = ExtResource("2_8agjf")
 
 [node name="CoinCounterLabel" type="Label" parent="HBoxContainer" unique_id=81384241]
 layout_mode = 2
-text = "0 / 1000"
+text = "0 / 500"
 label_settings = SubResource("LabelSettings_082uc")
 horizontal_alignment = 1
 vertical_alignment = 1
