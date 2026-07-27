@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b25dp2omijelv" path="res://buttons/tab_button.tscn" id="8_5klac"]
 [ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://buttons/scripts/button_audio.gd" id="8_arv2f"]
 [ext_resource type="Script" uid="uid://dgwkwoq7sxgow" path="res://ui/scripts/settings_panel.gd" id="8_ubpvv"]
+[ext_resource type="PackedScene" uid="uid://brd2ld8t8vfww" path="res://ui/are_you_sure_dialog.tscn" id="11_lsdqh"]
 
 [sub_resource type="Curve" id="Curve_ei257"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.516854), 0.0, 0.0, 0, 0]
@@ -382,6 +383,22 @@ value = 0.5
 [node name="BackButton" parent="SettingsPanel/VBoxContainer" unique_id=1633599336 instance=ExtResource("8_5klac")]
 layout_mode = 2
 text = "Back"
+
+[node name="AreYouSureDialog" parent="." unique_id=1435477926 node_paths=PackedStringArray("caller") instance=ExtResource("11_lsdqh")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -60.0
+offset_right = 200.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+caller = NodePath("../ButtonPanel")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=180917531]
 layout_mode = 1

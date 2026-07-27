@@ -1,4 +1,4 @@
-# audio_manager.gd
+# settings_panel.gd
 extends Control
 
 @export var master_slider: HSlider
@@ -39,6 +39,3 @@ func _on_fullscreen_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
-func _on_quit_button_pressed() -> void:
-	SceneLoader.load_scene("uid://jlbgrqoqh5fq")
