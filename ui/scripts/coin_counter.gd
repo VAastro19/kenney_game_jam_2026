@@ -5,6 +5,7 @@ class_name CoinCounter extends Control
 @onready var amount_label: Label = $HBoxContainer/CoinCounterLabel
 
 @export var coin_type: EconomyManager.CoinType
+var coin_type_name: String
 
 func _ready() -> void:
 	EventBus.OnUpdateCoin.connect(_on_coin_update)
@@ -21,18 +22,9 @@ func _ready() -> void:
 
 		EconomyManager.CoinType.RED:
 			coin_texture.texture = load("uid://dum12h5kdlrj4")
+		
+	coin_type_name = EconomyManager.CoinType.keys()[coin_type].to_lower() + "_amount"
 
 func _on_coin_update(type: EconomyManager.CoinType) -> void:
 	if type == coin_type:
-		match coin_type:
-			EconomyManager.CoinType.BLUE:
-				amount_label.text = str(int(EconomyManager.blue_amount)) + " / " + str(int(EconomyManager.coin_cap))
-
-			EconomyManager.CoinType.GREEN:
-				amount_label.text = str(int(EconomyManager.green_amount)) + " / " + str(int(EconomyManager.coin_cap))
-
-			EconomyManager.CoinType.YELLOW:
-				amount_label.text = str(int(EconomyManager.yellow_amount)) + " / " + str(int(EconomyManager.coin_cap))
-
-			EconomyManager.CoinType.RED:
-				amount_label.text = str(int(EconomyManager.red_amount)) + " / " + str(int(EconomyManager.coin_cap))
+		amount_label.text = str(int(EconomyManager.get(coin_type_name))) + " / " + str(int(EconomyManager.coin_cap))

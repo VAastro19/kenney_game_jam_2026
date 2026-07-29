@@ -42,49 +42,26 @@ func _add_building(building_type: BuildManager.BuildingType) -> void:
 	build_sound.play()
 
 func _check_building_cost(building_type: BuildManager.BuildingType) -> bool:
+	var building_type_name: String = BuildingType.keys()[building_type].to_lower()
+	var cost_type_name: String
+
 	match building_type:
 		BuildManager.BuildingType.WINDMILL:
-			if EconomyManager.windmill_cost <= EconomyManager.blue_amount:
-				EconomyManager.blue_amount -= EconomyManager.windmill_cost
-				return true
-			else:
-				print("Not enough blue coins!")
-				print(EconomyManager.blue_amount)
-				print(EconomyManager.windmill_cost)
-				return false
-
+			cost_type_name = "blue"
 		BuildManager.BuildingType.LUMBER:
-			if EconomyManager.lumber_cost <= EconomyManager.blue_amount:
-				EconomyManager.blue_amount -= EconomyManager.lumber_cost
-				return true
-			else:
-				print("Not enough blue coins!")
-				return false
-
+			cost_type_name = "blue"
 		BuildManager.BuildingType.BLACKSMITH:
-			if EconomyManager.blacksmith_cost <= EconomyManager.green_amount:
-				EconomyManager.green_amount -= EconomyManager.blacksmith_cost
-				return true
-			else:
-				print("Not enough green coins!")
-				return false
-
+			cost_type_name = "green"
 		BuildManager.BuildingType.CASTLE:
-			if EconomyManager.castle_cost <= EconomyManager.yellow_amount:
-				EconomyManager.yellow_amount -= EconomyManager.castle_cost
-				return true
-			else:
-				print("Not enough yellow coins!")
-				return false
-
+			cost_type_name = "yellow"
 		BuildManager.BuildingType.WAREHOUSE:
-			if EconomyManager.warehouse_cost <= EconomyManager.green_amount:
-				EconomyManager.green_amount -= EconomyManager.warehouse_cost
-				return true
-			else:
-				print("Not enough green coins!")
-				return false
-
+			cost_type_name = "green"
 		_:
-			print("Unknown building")
-			return false
+			cost_type_name = "blue"
+	
+	if EconomyManager.get(building_type_name + "_cost") <= EconomyManager.get(cost_type_name + "_amount"):
+		EconomyManager.set(cost_type_name + "_amount", EconomyManager.get(cost_type_name + "_amount") - EconomyManager.get(building_type_name + "_cost"))
+		return true
+	else:
+		print("Not enough funds!")
+		return false

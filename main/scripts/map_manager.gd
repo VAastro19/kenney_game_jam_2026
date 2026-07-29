@@ -45,10 +45,14 @@ func _try_set_hex_state(building_type: BuildManager.BuildingType) -> void:
 	if not BuildManager._check_building_cost(building_type):
 		return
 	else:
+		_place_building_visual(coords, building_type)
 		hex_map.set_cell(coords, 0, hex_atlas_coords[building_type])
 		hex_info[coords].is_used = true
 		hex_info[coords].hex_type = building_type
 		BuildManager._add_building(building_type)
+
+func _place_building_visual(hex_pos: Vector2i, building_type: BuildManager.BuildingType) -> void:
+	pass
 
 # Cutscene after completing the game
 func _win_the_game() -> void:
@@ -69,8 +73,8 @@ func _win_the_game() -> void:
 	await get_tree().create_timer(2.0).timeout
 	
 	# Change the camp tile to monument
-	hex_info[Vector2i(-1,-1)].hex_type = EconomyManager.BuildingType.MONUMENT
-	hex_map.set_cell(Vector2i(-1,-1), 0, hex_atlas_coords[EconomyManager.BuildingType.MONUMENT])
+	hex_info[Vector2i(-1,-1)].hex_type = BuildManager.BuildingType.MONUMENT
+	hex_map.set_cell(Vector2i(-1,-1), 0, hex_atlas_coords[BuildManager.BuildingType.MONUMENT])
 	
 	# Load the main menu after a second
 	await get_tree().create_timer(1.0).timeout

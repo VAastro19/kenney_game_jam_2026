@@ -7,6 +7,7 @@ class_name BuildingButton extends Control
 @onready var cost_label: RichTextLabel = $Cost
 
 @export var building_type: BuildManager.BuildingType
+@export var cost_type: EconomyManager.CoinType
 @export var is_unlocked: bool:
 	set(new_value):
 		is_unlocked = new_value
@@ -14,6 +15,9 @@ class_name BuildingButton extends Control
 			modulate = Color.DIM_GRAY
 		else:
 			modulate = Color.WHITE
+
+var cost_type_name: String
+var building_type_name: String
 
 func _ready() -> void:
 	EventBus.OnUnlockBuilding.connect(_on_unlock_building)
@@ -59,23 +63,12 @@ func _ready() -> void:
 	button.texture_pressed = button.texture_normal
 	button.texture_hover = button.texture_normal
 	button.texture_focused = button.texture_normal
+	
+	cost_type_name = EconomyManager.CoinType.keys()[cost_type].to_lower()
+	building_type_name = BuildManager.BuildingType.keys()[building_type].to_lower()
 
 func _process(_delta: float) -> void:
-	match building_type:
-		BuildManager.BuildingType.WAREHOUSE:
-			cost_label.text = "[font_size=28][outline_size=4]Cost: " + str(int(EconomyManager.warehouse_cost)) + " [img=18]res://assets/graphics/coins/green_coin.png[/img]"
-
-		BuildManager.BuildingType.WINDMILL:
-			cost_label.text = "[font_size=28][outline_size=4]Cost: " + str(int(EconomyManager.windmill_cost)) + " [img=18]res://assets/graphics/coins/blue_coin.png[/img]"
-
-		BuildManager.BuildingType.LUMBER:
-			cost_label.text = "[font_size=28][outline_size=4]Cost: " + str(int(EconomyManager.lumber_cost)) + " [img=18]res://assets/graphics/coins/blue_coin.png[/img]"
-
-		BuildManager.BuildingType.BLACKSMITH:
-			cost_label.text = "[font_size=28][outline_size=4]Cost: " + str(int(EconomyManager.blacksmith_cost)) + " [img=18]res://assets/graphics/coins/green_coin.png[/img]"
-
-		BuildManager.BuildingType.CASTLE:
-			cost_label.text = "[font_size=28][outline_size=4]Cost: " + str(int(EconomyManager.castle_cost)) + " [img=18]res://assets/graphics/coins/yellow_coin.png[/img]"
+	cost_label.text = "[font_size=28][outline_size=4]Cost: " + str(int(EconomyManager.get(building_type_name + "_cost"))) + " [img=18]res://assets/graphics/coins/" + str(cost_type_name) + "_coin.png[/img]"
 
 func _on_button_pressed() -> void:
 	if is_unlocked:

@@ -14,6 +14,8 @@ class_name CoinButton extends Control
 		else:
 			modulate = Color.WHITE
 
+var coin_type_name: String
+
 func _ready() -> void:
 	EventBus.OnUnlockGenerator.connect(_on_unlock_generator)
 	button.pressed.connect(_on_button_pressed)
@@ -36,17 +38,11 @@ func _ready() -> void:
 	button.texture_pressed = button.texture_normal
 	button.texture_hover = button.texture_normal
 	button.texture_focused = button.texture_normal
+	
+	coin_type_name = EconomyManager.CoinType.keys()[coin_type].to_lower() + "_production"
 
 func _process(_delta: float) -> void:
-	match coin_type:
-		EconomyManager.CoinType.BLUE:
-			label.text = str(int(EconomyManager.blue_production)) + " / s"
-		EconomyManager.CoinType.GREEN:
-			label.text = str(int(EconomyManager.green_production)) + " / s"
-		EconomyManager.CoinType.YELLOW:
-			label.text = str(int(EconomyManager.yellow_production)) + " / s"
-		EconomyManager.CoinType.RED:
-			label.text = str(int(EconomyManager.red_production)) + " / s"
+	label.text = str(int(EconomyManager.get(coin_type_name))) + " / s"
 
 func _on_button_pressed() -> void:
 	if is_unlocked:
