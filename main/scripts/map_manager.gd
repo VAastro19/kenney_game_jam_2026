@@ -5,8 +5,10 @@ class HexInfo:
 	var is_used: bool = false
 	var hex_type: BuildManager.BuildingType = BuildManager.BuildingType.NONE
 
+@onready var production_visual: CoinProducedVisual = $CoinProducedVisual
 @onready var marker: Node2D = $TileMapLayer/HighlightMarker
 @onready var hex_map: TileMapLayer = $TileMapLayer
+var used_cells: Array[Vector2i] = []
 var hex_info: Dictionary[Vector2i, HexInfo]
 var hex_atlas_coords: Dictionary[BuildManager.BuildingType, Vector2i] = {
 	BuildManager.BuildingType.WAREHOUSE: Vector2i(8, 1),
@@ -49,6 +51,7 @@ func _try_set_hex_state(building_type: BuildManager.BuildingType) -> void:
 		hex_map.set_cell(coords, 0, hex_atlas_coords[building_type])
 		hex_info[coords].is_used = true
 		hex_info[coords].hex_type = building_type
+		used_cells.append(coords)
 		BuildManager._add_building(building_type)
 
 func _place_building_visual(hex_pos: Vector2i, building_type: BuildManager.BuildingType) -> void:
@@ -82,4 +85,22 @@ func _win_the_game() -> void:
 
 func _on_timer_timeout() -> void:
 	print("TICK!")
+	
+	for cell in used_cells:
+		var pos: Vector2 = hex_map.map_to_local(cell)
+		var building_type: BuildManager.BuildingType = hex_info[cell].hex_type
+		var coin_type: EconomyManager.CoinType
+
+		match building_type:
+			BuildManager.BuildingType.WINDMILL:
+				coin_type = EconomyManager.CoinType.BLUE
+			BuildManager.BuildingType.LUMBER:
+				coin_type = EconomyManager.CoinType.GREEN
+			BuildManager.BuildingType.BLACKSMITH:
+				coin_type = EconomyManager.CoinType.YELLOW
+			BuildManager.BuildingType.CASTLE:
+				coin_type = EconomyManager.CoinType.RED
+
+		production_visual.show_coin_produced(pos, coin_type)
+	
 	EventBus.OnTick.emit()

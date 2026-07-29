@@ -106,3 +106,4 @@ func _bought() -> void:
 	bought_audio.play()
 	cost_label.text = "[font_size=32][outline_size=2][color=dark_green]BOUGHT"
 	is_unlocked = false
+	button.scale = Vector2(0.5, 0.5)
