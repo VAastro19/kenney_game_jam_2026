@@ -44,7 +44,7 @@ func _try_set_hex_state(building_type: BuildManager.BuildingType) -> void:
 	
 	if hex_info[coords].is_used or BuildManager.in_build_mode == false:
 		return
-	if not BuildManager._check_building_cost(building_type):
+	if not BuildManager.check_building_cost(building_type):
 		return
 	else:
 		_place_building_visual(coords, building_type)

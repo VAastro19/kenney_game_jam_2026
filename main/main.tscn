@@ -465,7 +465,7 @@ is_unlocked = true
 [node name="BlacksmithUnlockButton" parent="CanvasLayer/GameHUD/UnlocksPanel/HBoxContainer" unique_id=1951994784 instance=ExtResource("7_na0o7")]
 layout_mode = 2
 unlock = 1
-cost = 2000.0
+cost = 2500.0
 cost_type = 2
 is_unlocked = true
 
@@ -486,7 +486,7 @@ is_unlocked = true
 [node name="YellowUnlockButton" parent="CanvasLayer/GameHUD/UnlocksPanel/HBoxContainer" unique_id=863975487 instance=ExtResource("7_na0o7")]
 layout_mode = 2
 unlock = 4
-cost = 1800.0
+cost = 2000.0
 cost_type = 2
 is_unlocked = true
 
@@ -534,32 +534,51 @@ alignment = 1
 
 [node name="ClickValueUpgradeButton" parent="CanvasLayer/GameHUD/UpgradesPanel/HBoxContainer" unique_id=5581367 instance=ExtResource("9_4hmqs")]
 layout_mode = 2
-is_unlocked = true
+upgrade = 0
+buy_limit = 10
+cost_type = 1
+cost_multiplier = 20.0
+initial_cost_offset = 20.0
 
 [node name="WindmillUpgradeButton" parent="CanvasLayer/GameHUD/UpgradesPanel/HBoxContainer" unique_id=1315885898 instance=ExtResource("9_4hmqs")]
 layout_mode = 2
 upgrade = 1
-is_unlocked = true
+buy_limit = 10
+cost_type = 1
+cost_multiplier = 20.0
+initial_cost_offset = 10.0
 
 [node name="LumberUpgradeButton" parent="CanvasLayer/GameHUD/UpgradesPanel/HBoxContainer" unique_id=2114787039 instance=ExtResource("9_4hmqs")]
 layout_mode = 2
 upgrade = 2
-is_unlocked = true
+buy_limit = 10
+cost_type = 2
+cost_multiplier = 30.0
+initial_cost_offset = 15.0
 
 [node name="BlacksmithUpgradeButton" parent="CanvasLayer/GameHUD/UpgradesPanel/HBoxContainer" unique_id=1533791013 instance=ExtResource("9_4hmqs")]
 layout_mode = 2
 upgrade = 3
-is_unlocked = true
+buy_limit = 10
+cost_type = 3
+cost_multiplier = 30.0
+initial_cost_offset = 20.0
 
 [node name="CastleUpgradeButton" parent="CanvasLayer/GameHUD/UpgradesPanel/HBoxContainer" unique_id=59858670 instance=ExtResource("9_4hmqs")]
 layout_mode = 2
 upgrade = 4
-is_unlocked = true
+buy_limit = 10
+cost_type = 4
+cost_multiplier = 40.0
+initial_cost_offset = 20.0
 
 [node name="MonumentUpgradeButton" parent="CanvasLayer/GameHUD/UpgradesPanel/HBoxContainer" unique_id=2003498770 instance=ExtResource("9_4hmqs")]
 layout_mode = 2
 upgrade = 5
-is_unlocked = true
+buy_limit = 1
+cost_type = 4
+cost_multiplier = 100000.0
+initial_cost_offset = 0.0
 
 [node name="InputHints" type="Control" parent="CanvasLayer/GameHUD" unique_id=1470617035]
 layout_mode = 1
@@ -624,6 +643,7 @@ texture = ExtResource("7_fwcvl")
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/GameHUD" unique_id=1482315597]
 visible = false
+z_index = 5
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

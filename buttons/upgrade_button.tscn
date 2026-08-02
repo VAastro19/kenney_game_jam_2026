@@ -22,6 +22,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mfn4j")
+upgrade = null
+buy_limit = null
+cost_type = null
+is_unlocked = true
 
 [node name="Button" type="TextureButton" parent="." unique_id=1891443845]
 custom_minimum_size = Vector2(120, 140)

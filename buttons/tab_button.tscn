@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://buttons/scripts/button_audio.gd" id="3_usxpr"]
 
 [node name="TabButton" type="Button" unique_id=1094330538]
+z_index = 2
 custom_minimum_size = Vector2(140, 50)
 offset_right = 140.0
 offset_bottom = 50.0

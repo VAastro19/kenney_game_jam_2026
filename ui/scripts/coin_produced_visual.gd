@@ -27,7 +27,7 @@ func show_coin_produced(pos: Vector2, type: EconomyManager.CoinType) -> void:
 	coin.scale = Vector2(0.5, 0.5)
 	coin.pivot_offset_ratio = Vector2(0.5, 0.5)
 	coin.z_index = 2
-	coin.position = pos - Vector2(23, 80)
+	coin.position = pos - hex_offset
 	
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)

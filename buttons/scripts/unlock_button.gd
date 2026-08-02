@@ -34,6 +34,8 @@ var is_bulding: bool = true
 var cost_type_name: String
 
 func _ready() -> void:
+	button.pressed.connect(_on_button_pressed)
+	
 	is_unlocked = true
 	type_icon.texture = load("uid://c8b733my3oitb")
 	cost_type_name = str(EconomyManager.CoinType.keys()[cost_type].to_lower())

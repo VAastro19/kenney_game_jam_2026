@@ -41,7 +41,7 @@ func _add_building(building_type: BuildManager.BuildingType) -> void:
 	await get_tree().create_timer(0.3).timeout
 	build_sound.play()
 
-func _check_building_cost(building_type: BuildManager.BuildingType) -> bool:
+func check_building_cost(building_type: BuildManager.BuildingType) -> bool:
 	var building_type_name: String = BuildingType.keys()[building_type].to_lower()
 	var cost_type_name: String
 

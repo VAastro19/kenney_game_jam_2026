@@ -68,7 +68,22 @@ func _ready() -> void:
 	building_type_name = BuildManager.BuildingType.keys()[building_type].to_lower()
 
 func _process(_delta: float) -> void:
+	if building_type == BuildManager.BuildingType.WAREHOUSE:
+		if EconomyManager.warehouses != 4:
+			pass
+		else:
+			_change_cost_type(EconomyManager.CoinType.YELLOW)
+	
+		if EconomyManager.warehouses != 6:
+			pass
+		else:
+			_change_cost_type(EconomyManager.CoinType.RED)
+
 	cost_label.text = "[font_size=28][outline_size=4]Cost: " + str(int(EconomyManager.get(building_type_name + "_cost"))) + " [img=18]res://assets/graphics/coins/" + str(cost_type_name) + "_coin.png[/img]"
+
+func _change_cost_type(new_cost_type: EconomyManager.CoinType) -> void:
+	cost_type = new_cost_type
+	cost_type_name = EconomyManager.CoinType.keys()[cost_type].to_lower()
 
 func _on_button_pressed() -> void:
 	if is_unlocked:

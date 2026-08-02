@@ -3,9 +3,11 @@ class_name CoinButton extends Control
 
 @onready var button: TextureButton = $Button
 @onready var label: Label = $Label
+@onready var particles: CoinClickedVisual = $CoinClickedVisual
 
 @export var coin_type: EconomyManager.CoinType
-@export var click_value: float = 1
+@export var click_value: float:
+	get: return max(1, 2 ** EconomyManager.click_value_count)
 @export var is_unlocked: bool:
 	set(new_value):
 		is_unlocked = new_value
@@ -42,11 +44,13 @@ func _ready() -> void:
 	coin_type_name = EconomyManager.CoinType.keys()[coin_type].to_lower() + "_production"
 
 func _process(_delta: float) -> void:
-	label.text = str(int(EconomyManager.get(coin_type_name))) + " / s"
+	label.text = str(snappedf(EconomyManager.get(coin_type_name), 0.1)) + " / s"
 
 func _on_button_pressed() -> void:
 	if is_unlocked:
 		EventBus.OnClick.emit(click_value, coin_type)
+		for i in range(maxi(int(click_value), 16)):
+			particles.show_coins(global_position, coin_type)
 
 func _on_unlock_generator(type: EconomyManager.CoinType) -> void:
 	if type == coin_type:

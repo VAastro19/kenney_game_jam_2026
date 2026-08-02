@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c2pgc2wuco2a1" path="res://assets/graphics/coins/blue_coin.png" id="2_hhq2s"]
 [ext_resource type="Script" uid="uid://bxev2bkyiepmv" path="res://buttons/scripts/button_visuals.gd" id="3_mkbrl"]
 [ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://buttons/scripts/button_audio.gd" id="4_mkbrl"]
+[ext_resource type="Script" uid="uid://b8qpcyigdca8o" path="res://ui/scripts/coin_clicked_visual.gd" id="5_45lkf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_082uc"]
 font_size = 48
@@ -13,6 +14,7 @@ shadow_size = 4
 shadow_color = Color(0, 0, 0, 0.53333336)
 
 [node name="CoinButton" type="Control" unique_id=1278047215]
+z_index = 1
 custom_minimum_size = Vector2(48, 46)
 layout_mode = 3
 anchors_preset = 0
@@ -48,3 +50,6 @@ text = "0 / s"
 label_settings = SubResource("LabelSettings_082uc")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CoinClickedVisual" type="Node" parent="." unique_id=592382176]
+script = ExtResource("5_45lkf")
