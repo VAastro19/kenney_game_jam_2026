@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dhjidjemprqtg" path="res://assets/graphics/tiles/grass1.png" id="12_fwcvl"]
 [ext_resource type="Script" uid="uid://cjksq4cwhqfjg" path="res://ui/scripts/pause_menu.gd" id="12_s758e"]
 [ext_resource type="PackedScene" uid="uid://brd2ld8t8vfww" path="res://ui/are_you_sure_dialog.tscn" id="13_n3o0a"]
-[ext_resource type="Script" uid="uid://c82dx6ryciuyx" path="res://ui/scripts/coin_produced_visual.gd" id="19_piupu"]
+[ext_resource type="Script" uid="uid://c82dx6ryciuyx" path="res://visuals/scripts/coin_produced_visual.gd" id="19_piupu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q0ro8"]
 font_size = 32
@@ -227,6 +227,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_xwkvk")
 production_panel = NodePath("ProductionPanel")
 buildings_panel = NodePath("BuldingsPanel")
@@ -261,6 +262,7 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 9.599991
 offset_bottom = 10.0
+mouse_filter = 2
 
 [node name="BlueCoinCounter" parent="CanvasLayer/GameHUD/CoinCounterContainer" unique_id=1105764973 instance=ExtResource("2_0i4oc")]
 layout_mode = 2
@@ -589,6 +591,7 @@ offset_left = 0.55200195
 offset_bottom = 0.06399536
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/GameHUD/InputHints" unique_id=325753381]
 layout_mode = 1

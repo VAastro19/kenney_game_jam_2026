@@ -8,13 +8,14 @@ enum BuildingType {NONE, WAREHOUSE, WINDMILL, LUMBER, BLACKSMITH, CASTLE, CAMP, 
 var in_build_mode: bool = false
 var selected_building: BuildingType = BuildingType.NONE
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("exit_build_mode"):
-		in_build_mode = false
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("exit_build_mode"):
+			in_build_mode = false
 
-	if in_build_mode:
-		if Input.is_action_just_pressed("place_building"):
-			EventBus.OnPlaceBuilding.emit(selected_building)
+		if in_build_mode:
+			if event.is_action_pressed("place_building"):
+				EventBus.OnPlaceBuilding.emit(selected_building)
 
 func _add_building(building_type: BuildManager.BuildingType) -> void:
 	match building_type:

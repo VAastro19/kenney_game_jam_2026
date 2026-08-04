@@ -3,7 +3,8 @@ class_name CoinButton extends Control
 
 @onready var button: TextureButton = $Button
 @onready var label: Label = $Label
-@onready var particles: CoinClickedVisual = $CoinClickedVisual
+@onready var particles: Node = $CoinClickedVisual
+@onready var number_visual: Node = $NumberProducedVisual
 
 @export var coin_type: EconomyManager.CoinType
 @export var click_value: float:
@@ -51,6 +52,7 @@ func _on_button_pressed() -> void:
 		EventBus.OnClick.emit(click_value, coin_type)
 		for i in range(maxi(int(click_value), 16)):
 			particles.show_coins(global_position, coin_type)
+		number_visual.show_number_produced(global_position, click_value)
 
 func _on_unlock_generator(type: EconomyManager.CoinType) -> void:
 	if type == coin_type:

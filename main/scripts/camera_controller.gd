@@ -4,7 +4,8 @@ extends Camera2D
 # Parameters for camera control
 @export_range(0, 2000) var camera_speed: float = 1000 ## Allowed movement speed range for the camera
 @export var edge_margin: float = 20 ## Defines how far from the edge camera starts panning
-@export var map_size: Vector2 = Vector2(500, 480)
+@export var map_size: Vector2 = Vector2(500, 630)
+@export var ui_offset: float = 170
 @export var allow_pan: bool = true
 
 # Set this camera as active
@@ -33,7 +34,7 @@ func _handle_keyboard_movement(delta: float) -> void:
 		direction = direction.normalized()
 		position += direction * camera_speed * delta
 		position.x = clamp(position.x, -map_size.x / zoom.x, map_size.x / zoom.x)
-		position.y = clamp(position.y, -map_size.y / zoom.y, map_size.y / zoom.y)
+		position.y = clamp(position.y, -map_size.y / zoom.y, (map_size.y + ui_offset) / zoom.y)
 
 # Mouse input logic and edge scrolling
 func _handle_edge_movement(delta: float) -> void:
@@ -54,4 +55,4 @@ func _handle_edge_movement(delta: float) -> void:
 		direction = direction.normalized()
 		position += direction * camera_speed * delta
 		position.x = clamp(position.x, -map_size.x * zoom.x, map_size.x * zoom.x)
-		position.y = clamp(position.y, -map_size.y * zoom.y, map_size.y * zoom.y)
+		position.y = clamp(position.y, -map_size.y * zoom.y, (map_size.y + ui_offset) * zoom.y)

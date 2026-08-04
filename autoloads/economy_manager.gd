@@ -4,10 +4,10 @@ extends Node
 enum CoinType {NONE, BLUE, GREEN, YELLOW, RED}
 
 @export var coin_cap: float = 500
-@export var efficiency_increase: float = 1.5
+@export var efficiency_increase: float = 2.0
 
 # Coin amounts
-@export var blue_amount: float = 0
+@export var blue_amount: float = 500
 @export var green_amount: float = 0
 @export var yellow_amount: float = 0
 @export var red_amount: float = 0
@@ -82,8 +82,6 @@ func _on_click(amount: float, type: CoinType) -> void:
 		set(coin_type_name + "_amount", coin_cap)
 
 func _on_tick() -> void:
-	print(blue_production)
-	print(blue_efficiency)
 	blue_amount = min(coin_cap, blue_amount + blue_production)
 	EventBus.OnUpdateCoin.emit(CoinType.BLUE)
 

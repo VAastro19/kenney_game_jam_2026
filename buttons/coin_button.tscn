@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c2pgc2wuco2a1" path="res://assets/graphics/coins/blue_coin.png" id="2_hhq2s"]
 [ext_resource type="Script" uid="uid://bxev2bkyiepmv" path="res://buttons/scripts/button_visuals.gd" id="3_mkbrl"]
 [ext_resource type="Script" uid="uid://dwb5cqjjj7vfb" path="res://buttons/scripts/button_audio.gd" id="4_mkbrl"]
-[ext_resource type="Script" uid="uid://b8qpcyigdca8o" path="res://ui/scripts/coin_clicked_visual.gd" id="5_45lkf"]
+[ext_resource type="Script" uid="uid://b8qpcyigdca8o" path="res://visuals/scripts/coin_clicked_visual.gd" id="5_45lkf"]
+[ext_resource type="Script" uid="uid://cncvdsh46g8rx" path="res://visuals/scripts/number_produced_visual.gd" id="6_3v7dl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_082uc"]
 font_size = 48
@@ -53,3 +54,6 @@ vertical_alignment = 1
 
 [node name="CoinClickedVisual" type="Node" parent="." unique_id=592382176]
 script = ExtResource("5_45lkf")
+
+[node name="NumberProducedVisual" type="Node" parent="." unique_id=136616209]
+script = ExtResource("6_3v7dl")

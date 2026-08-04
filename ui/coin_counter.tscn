@@ -15,16 +15,19 @@ custom_minimum_size = Vector2(100, 50)
 layout_mode = 3
 anchor_right = 0.2
 anchor_bottom = 0.08
+mouse_filter = 1
 script = ExtResource("1_1c3cc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1969921939]
 layout_mode = 0
 offset_right = 135.0
 offset_bottom = 46.0
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="CoinIcon" type="TextureRect" parent="HBoxContainer" unique_id=520827646]
 layout_mode = 2
+mouse_filter = 0
 texture = ExtResource("2_8agjf")
 
 [node name="CoinCounterLabel" type="Label" parent="HBoxContainer" unique_id=81384241]

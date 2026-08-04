@@ -1,5 +1,5 @@
 # coin_clicked_visual.gd
-class_name CoinClickedVisual extends Node
+extends Node
 
 var blue_coin: Texture2D = preload("uid://c2pgc2wuco2a1")
 var green_coin: Texture2D = preload("uid://c0cxtfjfkdxag")
@@ -29,6 +29,7 @@ func show_coins(pos: Vector2, type: EconomyManager.CoinType) -> void:
 	
 	await get_tree().create_timer(randf_range(0.01, 0.1)).timeout
 	call_deferred("add_child", coin)
+	coin.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED
 	coin.scale = Vector2(0.5, 0.5)
 	coin.pivot_offset_ratio = Vector2(0.5, 0.5)
 	coin.z_index = 0
