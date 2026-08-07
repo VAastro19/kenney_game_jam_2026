@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d3a11qae8y5yr"]
+
+[ext_resource type="Script" uid="uid://dowtit1cdvnmn" path="res://src/gameplay/managers/scripts/economy_manager.gd" id="1_yfolt"]
+
+[node name="EconomyManager" type="Node" unique_id=1526701189]
+script = ExtResource("1_yfolt")

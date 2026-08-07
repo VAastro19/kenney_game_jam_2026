@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Coins&Cities"
 config/tags=PackedStringArray("gamejam", "smallgame")
-run/main_scene="uid://cll0b7u5wnojk"
+run/main_scene="uid://d3n1x02f68kiw"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://assets/logos/game_icon.png"
 
@@ -25,14 +25,24 @@ buses/default_bus_layout="uid://bdtsfddjve28k"
 SceneLoader="*uid://dafi2mqd1wi21"
 EventBus="*uid://ussy10rcbuyp"
 Music="*uid://b7tfttxu834st"
-EconomyManager="*uid://dowtit1cdvnmn"
-BuildManager="*uid://dkoha1plqpvwf"
+Enums="*uid://77gvcctxcmbx"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://d0yg6bltmsihc"
+
+[file_customization]
+
+folder_colors={
+"res://src/core/": "red",
+"res://src/debug/": "yellow",
+"res://src/gameplay/": "blue",
+"res://src/map/": "orange",
+"res://src/resources/": "gray",
+"res://src/ui/": "green"
+}
 
 [gui]
 

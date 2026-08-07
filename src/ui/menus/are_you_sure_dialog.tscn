@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://brd2ld8t8vfww"]
+
+[ext_resource type="Script" uid="uid://cdestftoeft68" path="res://src/ui/menus/scripts/are_you_sure_dialog.gd" id="1_atjjt"]
+[ext_resource type="Texture2D" uid="uid://brqvh3wfubu3h" path="res://assets/graphics/ui/panel_brown_damaged.png" id="1_n8w2n"]
+[ext_resource type="PackedScene" uid="uid://b25dp2omijelv" path="res://src/ui/buttons/tab_button.tscn" id="2_atjjt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_082uc"]
+font_size = 32
+font_color = Color(0.16565639, 0.16565642, 0.16565639, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.62352943)
+
+[node name="AreYouSureDialog" type="Control" unique_id=1435477926]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 120.0
+script = ExtResource("1_atjjt")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=898510677]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_n8w2n")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Label" type="Label" parent="." unique_id=1695829190]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.0
+offset_top = 15.0
+offset_right = 151.0
+offset_bottom = 39.0
+grow_horizontal = 2
+text = "Are you sure you want to quit?"
+label_settings = SubResource("LabelSettings_082uc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=52761635]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.0
+offset_top = -10.0
+offset_right = 142.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="YesButton" parent="HBoxContainer" unique_id=1094330538 instance=ExtResource("2_atjjt")]
+layout_mode = 2
+text = "Yes"
+
+[node name="NoButton" parent="HBoxContainer" unique_id=1884373362 instance=ExtResource("2_atjjt")]
+layout_mode = 2
+text = "No"
