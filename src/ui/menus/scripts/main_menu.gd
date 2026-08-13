@@ -6,7 +6,7 @@ extends Control
 @onready var are_you_sure: Control = $AreYouSureDialog
 
 func _on_play_button_pressed() -> void:
-	SceneLoader.load_scene("uid://bwvej8u5ivcdm")
+	SceneLoader.load_scene("uid://d3n1x02f68kiw")
 
 func _on_settings_button_pressed() -> void:
 	button_panel.visible = false

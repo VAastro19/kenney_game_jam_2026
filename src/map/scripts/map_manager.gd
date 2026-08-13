@@ -61,8 +61,9 @@ func _place_building_visual(hex_pos: Vector2i, building_type: Enums.BuildingType
 
 # Cutscene after completing the game
 func _win_the_game() -> void:
-	var game_hud = $CanvasLayer/GameHUD
+	var game_hud = %HudRoot
 	var camera = $Camera2D
+	var victory_audio: AudioStreamPlayer = $VictoryAudio
 	
 	camera.allow_pan = false
 	
@@ -81,8 +82,9 @@ func _win_the_game() -> void:
 	hex_info[Vector2i(-1,-1)].hex_type = Enums.BuildingType.MONUMENT
 	hex_map.set_cell(Vector2i(-1,-1), 0, hex_atlas_coords[Enums.BuildingType.MONUMENT])
 	
-	# Load the main menu after a second
-	await get_tree().create_timer(1.0).timeout
+	# Load the main menu after some time
+	victory_audio.play()
+	await get_tree().create_timer(2.0).timeout
 	SceneLoader.load_scene("uid://jlbgrqoqh5fq")
 
 func _on_timer_timeout() -> void:

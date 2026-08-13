@@ -4,9 +4,11 @@ class_name BuildManager extends Node
 @onready var economy_manager: Node = %EconomyManager
 
 @onready var build_sound: AudioStreamPlayer = $BuildSound
+@onready var fail_sound: AudioStreamPlayer = $FailSound
 
 var in_build_mode: bool = false
 var selected_building: Enums.BuildingType = Enums.BuildingType.NONE
+var warehouse_cost_type: Enums.CoinType = Enums.CoinType.GREEN
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -56,7 +58,7 @@ func check_building_cost(building_type: Enums.BuildingType) -> bool:
 		Enums.BuildingType.CASTLE:
 			cost_type_name = "yellow"
 		Enums.BuildingType.WAREHOUSE:
-			cost_type_name = "green"
+			cost_type_name = Enums.CoinType.keys()[warehouse_cost_type].to_lower()
 		_:
 			cost_type_name = "blue"
 	
@@ -65,4 +67,5 @@ func check_building_cost(building_type: Enums.BuildingType) -> bool:
 		return true
 	else:
 		print("Not enough funds!")
+		fail_sound.play()
 		return false

@@ -72,12 +72,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if building_type == Enums.BuildingType.WAREHOUSE:
-		if economy_manager.warehouses != 4:
+		if economy_manager.warehouses != 2:
 			pass
 		else:
 			_change_cost_type(Enums.CoinType.YELLOW)
-	
-		if economy_manager.warehouses != 6:
+
+		if economy_manager.warehouses != 4:
 			pass
 		else:
 			_change_cost_type(Enums.CoinType.RED)
@@ -87,6 +87,7 @@ func _process(_delta: float) -> void:
 func _change_cost_type(new_cost_type: Enums.CoinType) -> void:
 	cost_type = new_cost_type
 	cost_type_name = Enums.CoinType.keys()[cost_type].to_lower()
+	build_manager.warehouse_cost_type = new_cost_type
 
 func _on_button_pressed() -> void:
 	if is_unlocked:

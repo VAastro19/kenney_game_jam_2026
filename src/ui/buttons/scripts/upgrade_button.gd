@@ -5,6 +5,7 @@ class_name UpgradeButton extends Control
 
 @onready var button: TextureButton = $Button
 @onready var upgrade_name: Label = $Name
+@onready var upgrade_tier: Label = $Button/Tier
 @onready var description_label: RichTextLabel = $Description
 @onready var cost_label: RichTextLabel = $Cost
 @onready var type_icon: TextureRect = $Button/UpgradeTypeIcon
@@ -83,6 +84,25 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	cost_label.text = "[font_size=28][outline_size=4]Cost: " + str(int(cost)) + " [img=18]res://assets/graphics/coins/" + str(cost_type_name) + "_coin.png[/img]"
+	if upgrade == Enums.Upgrade.CLICK_VALUE:
+		if cur_buys != 3:
+			pass
+		else:
+			_change_cost_type(Enums.CoinType.GREEN)
+
+		if cur_buys != 5:
+			pass
+		else:
+			_change_cost_type(Enums.CoinType.YELLOW)
+		
+		if cur_buys != 7:
+			pass
+		else:
+			_change_cost_type(Enums.CoinType.RED)
+
+func _change_cost_type(new_cost_type: Enums.CoinType) -> void:
+	cost_type = new_cost_type
+	cost_type_name = Enums.CoinType.keys()[cost_type].to_lower()
 
 func _on_button_pressed() -> void:
 	if is_unlocked:
@@ -97,6 +117,7 @@ func _on_button_pressed() -> void:
 func _bought() -> void:
 	bought_audio.play()
 	cur_buys += 1
+	upgrade_tier.text = str(cur_buys)
 	if cur_buys >= buy_limit:
 		cost_label.text = "[font_size=32][outline_size=2][color=dark_green]BOUGHT"
 		is_unlocked = false

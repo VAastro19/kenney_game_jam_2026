@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Coins&Cities"
 config/tags=PackedStringArray("gamejam", "smallgame")
-run/main_scene="uid://d3n1x02f68kiw"
+run/main_scene="uid://cll0b7u5wnojk"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://assets/logos/game_icon.png"
 
@@ -32,6 +32,7 @@ Enums="*uid://77gvcctxcmbx"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://d0yg6bltmsihc"
+window/main_scene="uid://d3n1x02f68kiw"
 
 [file_customization]
 

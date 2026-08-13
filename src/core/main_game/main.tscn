@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b25dp2omijelv" path="res://src/ui/buttons/tab_button.tscn" id="5_gr0mf"]
 [ext_resource type="PackedScene" uid="uid://bqndwuq87n1cw" path="res://src/ui/buttons/coin_button.tscn" id="6_qp306"]
 [ext_resource type="PackedScene" uid="uid://ds8xh1k65hfrg" path="res://src/ui/buttons/building_button.tscn" id="7_4q08h"]
+[ext_resource type="AudioStream" uid="uid://dds3ikcg0n06t" path="res://assets/audio/victory.wav" id="8_mk4i2"]
 [ext_resource type="PackedScene" uid="uid://dvoo4rdf2yv21" path="res://src/ui/buttons/unlock_button.tscn" id="8_nj47t"]
 [ext_resource type="PackedScene" uid="uid://wps6k7ijji00" path="res://src/ui/buttons/upgrade_button.tscn" id="9_wonw4"]
 [ext_resource type="Texture2D" uid="uid://b7k6itilypcvf" path="res://assets/graphics/inputs/keyboard_escape.png" id="10_48tg2"]
@@ -258,6 +259,10 @@ duration = null
 y_offset = null
 hex_offset = null
 
+[node name="VictoryAudio" type="AudioStreamPlayer" parent="World" unique_id=1597885432]
+stream = ExtResource("8_mk4i2")
+volume_db = 1.0
+
 [node name="Timer" type="Timer" parent="World" unique_id=1637478958]
 autostart = true
 
@@ -305,8 +310,8 @@ anchor_right = 0.2
 anchor_bottom = 0.36
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 9.599991
-offset_bottom = 10.0
+offset_right = 10.0
+offset_bottom = 10.399994
 mouse_filter = 2
 
 [node name="BlueCoinCounter" parent="HudLayer/HudRoot/CoinCounterContainer" unique_id=1105764973 instance=ExtResource("4_mk4i2")]
@@ -581,7 +586,6 @@ alignment = 1
 
 [node name="ClickValueUpgradeButton" parent="HudLayer/HudRoot/UpgradesPanel/HBoxContainer" unique_id=5581367 instance=ExtResource("9_wonw4")]
 layout_mode = 2
-upgrade = 0
 buy_limit = 10
 cost_type = 1
 cost_multiplier = 20.0
@@ -622,9 +626,8 @@ initial_cost_offset = 20.0
 [node name="MonumentUpgradeButton" parent="HudLayer/HudRoot/UpgradesPanel/HBoxContainer" unique_id=1612378866 instance=ExtResource("9_wonw4")]
 layout_mode = 2
 upgrade = 5
-buy_limit = 1
 cost_type = 4
-cost_multiplier = 100000.0
+cost_multiplier = 1000000.0
 initial_cost_offset = 0.0
 
 [node name="InputHints" type="Control" parent="HudLayer/HudRoot" unique_id=903747981]

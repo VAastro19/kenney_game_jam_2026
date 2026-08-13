@@ -93,9 +93,9 @@ func _on_button_pressed() -> void:
 			economy_manager.set(cost_type_name + "_amount", economy_manager.get(cost_type_name + "_amount") - cost)
 			_bought()
 			if is_bulding:
-				EventBus.OnEnums.UnlockBuilding.emit(building_type)
+				EventBus.OnUnlockBuilding.emit(building_type)
 			else:
-				EventBus.OnEnums.UnlockGenerator.emit(generator_type)
+				EventBus.OnUnlockGenerator.emit(generator_type)
 
 func _bought() -> void:
 	bought_audio.play()

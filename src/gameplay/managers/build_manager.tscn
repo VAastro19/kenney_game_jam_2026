@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtusis3wjanb6" path="res://src/gameplay/managers/scripts/build_manager.gd" id="1_tajuj"]
 [ext_resource type="AudioStream" uid="uid://k44maxdvn725" path="res://assets/audio/build.ogg" id="1_uja65"]
+[ext_resource type="AudioStream" uid="uid://rwf1a7chnfot" path="res://assets/audio/ui_fail.wav" id="3_5b73f"]
 
 [node name="BuildManager" type="Node" unique_id=272784123]
 script = ExtResource("1_tajuj")
@@ -9,3 +10,6 @@ script = ExtResource("1_tajuj")
 [node name="BuildSound" type="AudioStreamPlayer" parent="." unique_id=509352540]
 stream = ExtResource("1_uja65")
 bus = &"SFX"
+
+[node name="FailSound" type="AudioStreamPlayer" parent="." unique_id=462578736]
+stream = ExtResource("3_5b73f")

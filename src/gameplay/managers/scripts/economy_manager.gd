@@ -5,7 +5,7 @@ class_name EconomyManager extends Node
 @export var efficiency_increase: float = 2.0
 
 # Coin amounts
-@export var blue_amount: float = 500
+@export var blue_amount: float = 0
 @export var green_amount: float = 0
 @export var yellow_amount: float = 0
 @export var red_amount: float = 0
@@ -35,11 +35,11 @@ var blacksmith_eff_count: int = 0
 var castle_eff_count: int = 0
 
 ## --- MONUMENT COST --- ##
-var monument_cost: float = 100000
+var monument_cost: float = 1000000
 
 ## --- BUILDING COSTS --- ##
 var warehouse_cost: float:
-	get: return calculate_building_cost(10, warehouses, 5.0)
+	get: return calculate_building_cost(10, warehouses, 10.0)
 
 var windmill_cost: float:
 	get: return calculate_building_cost(10, blue_generators, 5.0)
